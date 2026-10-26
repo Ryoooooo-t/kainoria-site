@@ -23,17 +23,40 @@
 </header>
 
 <div class="hero">
-  <div class="container">
+  <svg class="hero-art" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+    <circle cx="480" cy="80" r="120" stroke="#c2a053" stroke-opacity="0.35"/>
+    <circle cx="480" cy="80" r="200" stroke="#c2a053" stroke-opacity="0.22"/>
+    <circle cx="480" cy="80" r="290" stroke="#c2a053" stroke-opacity="0.13"/>
+    <circle cx="480" cy="80" r="390" stroke="#c2a053" stroke-opacity="0.07"/>
+  </svg>
+  <div class="container hero-inner">
     <span class="brand">KAINORIA</span>
     <h1>中小企業の現場に、<br>その会社専用のソフトウェアを。</h1>
     <p>KAINORIAは、AIによる開発自動化を活用し、中小企業ごとに最適化された業務アプリの開発と、現場の課題に応えるSaaS製品の提供を行うソフトウェア事業です。既存の汎用ソフトでは合わない現場の仕事を、その会社のやり方に合った道具で支えます。</p>
+    <div class="hero-meta">
+      <div>
+        <strong>オーダーメイド開発</strong>
+        <span>企業専用の業務アプリを、設計から保守まで一貫対応</span>
+      </div>
+      <div>
+        <strong>SaaS製品</strong>
+        <span>在庫管理アプリ「SmartStock SME」を提供中</span>
+      </div>
+      <div>
+        <strong>対象</strong>
+        <span>中小企業・中小製造業の現場に特化</span>
+      </div>
+    </div>
   </div>
 </div>
 
 <main class="container">
 
   <section id="business">
-    <h2 class="section-title">事業内容</h2>
+    <div class="sec-head">
+      <span class="sec-label">Business</span>
+      <h2 class="section-title">事業内容</h2>
+    </div>
     <p class="section-lead">2つの形態で、中小企業の業務を支えるソフトウェアを提供します。</p>
     <div class="card-grid">
       <div class="card">
@@ -51,7 +74,10 @@
   </section>
 
   <section id="products">
-    <h2 class="section-title">製品・サービス</h2>
+    <div class="sec-head">
+      <span class="sec-label">Products</span>
+      <h2 class="section-title">製品・サービス</h2>
+    </div>
     <p class="section-lead">提供中の製品とサービスです。今後、順次拡充していきます。</p>
     <div class="card-grid">
       <div class="card">
@@ -65,7 +91,10 @@
   </section>
 
   <section id="news">
-    <h2 class="section-title">お知らせ</h2>
+    <div class="sec-head">
+      <span class="sec-label">News</span>
+      <h2 class="section-title">お知らせ</h2>
+    </div>
     <ul class="news-list">
       <li><time>2026年10月</time><span>KAINORIA 公式サイトを公開しました。</span></li>
       <!-- お知らせの追加はここへ（li を1行足す。新しいものが上） -->
@@ -73,7 +102,10 @@
   </section>
 
   <section id="contact">
-    <h2 class="section-title">お問い合わせ</h2>
+    <div class="sec-head">
+      <span class="sec-label">Contact</span>
+      <h2 class="section-title">お問い合わせ</h2>
+    </div>
     <p class="section-lead">製品・開発のご相談は、メールにてお気軽にお問い合わせください。</p>
     <p><a class="btn" href="mailto:kainoria.official@gmail.com">kainoria.official@gmail.com へメールする</a></p>
   </section>
@@ -82,7 +114,10 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <div>© 2026 KAINORIA</div>
+    <div>
+      <a class="logo" href="index.html">KAINORIA<span>.</span></a>
+      <div style="margin-top:6px;">© 2026 KAINORIA</div>
+    </div>
     <div>
       <a href="about.html">事業者情報</a>　
       <a href="mailto:kainoria.official@gmail.com">お問い合わせ</a>
