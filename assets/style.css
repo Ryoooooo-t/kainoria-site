@@ -1,0 +1,186 @@
+/* KAINORIA 公式サイト 共通スタイル
+   色や余白を変えたいときはこのファイルの :root 変数を編集する。
+   全ページ共通で読み込まれるため、1か所の変更で全体に反映される。 */
+:root {
+  --navy: #0f2a43;
+  --teal: #0e7c7b;
+  --teal-dark: #0a5f5e;
+  --bg: #f7f9fb;
+  --card: #ffffff;
+  --text: #1d2733;
+  --muted: #5b6b7c;
+  --line: #dde5ec;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.8;
+}
+
+/* ヘッダー */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+}
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--navy);
+  text-decoration: none;
+}
+.logo span { color: var(--teal); }
+.main-nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.main-nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+.main-nav a:hover { color: var(--teal); }
+
+/* レイアウト */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+section { padding: 56px 0 8px; }
+.section-title {
+  font-size: 26px;
+  color: var(--navy);
+  margin: 0 0 8px;
+  letter-spacing: 0.04em;
+}
+.section-lead { color: var(--muted); margin: 0 0 24px; }
+
+/* ヒーロー */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #17456e 60%, var(--teal-dark) 100%);
+  color: #fff;
+  padding: 72px 0 64px;
+}
+.hero h1 {
+  font-size: 34px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  letter-spacing: 0.03em;
+}
+.hero p { margin: 0; max-width: 720px; color: #dce8f2; }
+.hero .brand {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  padding: 4px 14px;
+  margin-bottom: 20px;
+}
+
+/* カード */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.card h3 { margin: 0 0 8px; color: var(--navy); font-size: 19px; }
+.card p { margin: 0 0 12px; color: var(--muted); font-size: 15px; }
+.card .tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal-dark);
+  background: #e4f2f2;
+  border-radius: 999px;
+  padding: 2px 10px;
+  margin-bottom: 12px;
+}
+.card a.more { color: var(--teal); font-weight: 700; text-decoration: none; }
+.card a.more:hover { text-decoration: underline; }
+
+/* 機能リスト */
+.feature-list { list-style: none; padding: 0; margin: 0; }
+.feature-list li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+}
+.feature-list li strong { color: var(--navy); }
+
+/* お知らせ */
+.news-list { list-style: none; padding: 0; margin: 0; }
+.news-list li {
+  display: flex;
+  gap: 16px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.news-list time { color: var(--muted); font-size: 14px; min-width: 110px; }
+
+/* 事業者情報などの定義リスト */
+dl.info { display: grid; grid-template-columns: 160px 1fr; gap: 10px 20px; }
+dl.info dt { font-weight: 700; color: var(--navy); }
+dl.info dd { margin: 0; }
+@media (max-width: 600px) {
+  dl.info { grid-template-columns: 1fr; gap: 2px; }
+  dl.info dd { margin-bottom: 12px; }
+}
+
+/* ボタン */
+.btn {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 12px 28px;
+}
+.btn:hover { background: var(--teal-dark); }
+
+/* フッター */
+.site-footer {
+  margin-top: 72px;
+  background: var(--navy);
+  color: #c9d6e2;
+  padding: 32px 0;
+  font-size: 14px;
+}
+.site-footer a { color: #fff; text-decoration: none; }
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
