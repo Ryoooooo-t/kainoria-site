@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAINORIA | 中小製造業のための在庫管理と専用アプリ開発（大阪）</title>
 <meta name="description" content="KAINORIAは大阪を拠点とするソフトウェア事業です。中小製造業向けの在庫管理アプリ「SmartStock SME」の提供と、工場ごとの業務手順に合わせた専用アプリの受託開発を行っています。">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KAINORIA">
+<meta property="og:title" content="KAINORIA | 中小製造業のための在庫管理と専用アプリ開発（大阪）">
+<meta property="og:description" content="KAINORIAは大阪を拠点とするソフトウェア事業です。中小製造業向けの在庫管理アプリ「SmartStock SME」の提供と、工場ごとの業務手順に合わせた専用アプリの受託開発を行っています。">
+<meta property="og:url" content="https://ryoooooo-t.github.io/kainoria-site/">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -16,6 +23,7 @@
       <a href="#about">KAINORIAについて</a>
       <a href="#business">事業内容</a>
       <a href="#process">ご依頼の流れ</a>
+      <a href="#quality">品質について</a>
       <a href="#products">製品・サービス</a>
       <a href="about.html">事業者情報</a>
     </nav>
@@ -107,7 +115,7 @@
         <span class="num">03</span>
         <div>
           <h3>開発</h3>
-          <p>AIを活用して開発を進め、動作テストとセキュリティのチェックを行います。（受託開発の場合）</p>
+          <p>AIを活用して開発を進めます。納品前には、次の「品質と開発の考え方」にある4段階の品質確認をすべて通過させます。（受託開発の場合）</p>
         </div>
       </li>
       <li>
@@ -126,6 +134,49 @@
       </li>
       <!-- 手順の追加・変更はここを編集 -->
     </ol>
+  </section>
+
+  <section id="quality">
+    <div class="sec-head">
+      <span class="sec-label">Quality</span>
+      <h2 class="section-title">品質と開発の考え方</h2>
+    </div>
+    <div class="prose">
+      <p>受託開発の納品物は、機械的な品質確認を4段階すべて通過したものだけに限っています。1つでも落ちれば、そのまま納品することはありません。</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <span class="num">01</span>
+        <div>
+          <h3>構文チェック</h3>
+          <p>コードが文法的に正しく、読み込める形になっているかを機械的に確認します。</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <div>
+          <h3>テスト実行</h3>
+          <p>用意した自動テストを全件実行します。1件でも失敗があれば、次へは進みません。</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <div>
+          <h3>セキュリティ静的検査</h3>
+          <p>危険な書き方や、情報漏えいにつながるパターンが混入していないかを静的に検査します。</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <div>
+          <h3>実起動ヘルス確認</h3>
+          <p>実際に起動して、画面とAPIが応答することを確認します。「動くはず」ではなく「動いたことを確認できた」ものだけを納品します。</p>
+        </div>
+      </li>
+    </ol>
+    <div class="prose" style="margin-top:20px;">
+      <p>確認に落ちた場合は、まず自動で修復を試みます。それでも直らないものは無理に進めず、人の確認に回します。製品の「SmartStock SME」についても同じ考え方で、変更のたびに自動テスト（350件以上）を全件実行し、実機での動作確認を行っています。また、SmartStock SME は事業所内のPCで完結する設計のため、業務データが外部のサーバーへ送信されることはありません。</p>
+    </div>
   </section>
 
   <section id="products">
@@ -175,6 +226,7 @@
       <h2 class="section-title">お知らせ</h2>
     </div>
     <ul class="news-list">
+      <li><time>2026年10月</time><span>「品質と開発の考え方」を掲載しました（納品前の4段階の品質確認について）。</span></li>
       <li><time>2026年10月</time><span>KAINORIA 公式サイトを公開しました。</span></li>
       <!-- お知らせの追加はここへ（li を1行足す。新しいものが上） -->
     </ul>

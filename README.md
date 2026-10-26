@@ -12,6 +12,7 @@ products/
   smartstock-sme.html       製品ページ: SmartStock SME
 assets/
   style.css                 全ページ共通のスタイル（色・余白は :root 変数で管理）
+  favicon.svg               ファビコン（全ページの <head> で参照）
 ```
 
 ## ページ・機能の足し方
