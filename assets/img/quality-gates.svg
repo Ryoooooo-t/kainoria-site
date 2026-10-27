@@ -5,10 +5,10 @@
     </marker>
   </defs>
   <style>
-    .box { fill: #14202e; }
-    .num { font-family: "Hiragino Mincho ProN", "YuMincho", "Yu Mincho", serif; font-size: 25px; fill: #b08d3e; font-weight: 700; }
-    .ttl { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 18.5px; fill: #ffffff; font-weight: 700; }
-    .sub { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 12.5px; fill: #aeb9c4; }
+    .box { fill: #ffffff; stroke: #1b3049; stroke-width: 1.5; }
+    .num { font-family: "Hiragino Mincho ProN", "YuMincho", "Yu Mincho", serif; font-size: 25px; fill: #7d6125; font-weight: 700; }
+    .ttl { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 18.5px; fill: #14202e; font-weight: 700; }
+    .sub { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 12.5px; fill: #565b61; }
     .flow { stroke: #b08d3e; stroke-width: 2.5; }
     .note { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 14.5px; fill: #2a2c2e; }
     .note-b { font-weight: 700; fill: #7d6125; }

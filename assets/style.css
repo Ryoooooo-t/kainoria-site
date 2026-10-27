@@ -1,17 +1,18 @@
 /* KAINORIA 公式サイト 共通スタイル
-   方針: 装飾は最小限にし、文章と表で伝える。色は藍とグレーを基調に、
-   金は見出しの罫など要点だけに使う。
+   方針: ライトテーマ。背景はアイボリー〜白、本文と見出しは深い藍、
+   金は罫線・番号など小さなアクセントに限定する。装飾は最小限にし、
+   文章と表と実画面で伝える。
    色や余白を変えたいときは :root 変数を編集する（全ページ共通）。 */
 :root {
   --ink: #14202e;
   --navy: #1b3049;
   --gold: #b08d3e;
   --gold-dark: #7d6125;
-  --bg: #f5f4f0;
+  --bg: #faf7f0;
   --card: #ffffff;
   --text: #2a2c2e;
-  --muted: #62666b;
-  --line: #d9d7cf;
+  --muted: #565b61;
+  --line: #e0dacb;
   --serif: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "YuMincho",
     "Yu Mincho", "Noto Serif JP", "MS Mincho", serif;
 }
@@ -53,8 +54,12 @@ body {
   letter-spacing: 0.18em;
   color: var(--ink);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 .logo span { color: var(--gold); }
+.logo-mark { width: 27px; height: 27px; border-radius: 6px; display: block; }
 .main-nav { display: flex; gap: 22px; flex-wrap: wrap; }
 .main-nav a {
   color: var(--text);
@@ -101,11 +106,12 @@ section { padding: 52px 0 4px; }
 .prose p { margin: 0 0 16px; }
 .prose p:last-child { margin-bottom: 0; }
 
-/* ヒーロー（装飾を排し、事実の要約として） */
+/* ヒーロー（ライト基調。装飾を排し、事実の要約として） */
 .hero {
-  background: var(--ink);
-  color: #eef1f4;
+  background: linear-gradient(180deg, #ffffff 0%, #fbf8f1 100%);
+  color: var(--text);
   padding: 60px 0 0;
+  border-bottom: 1px solid var(--line);
 }
 .hero h1 {
   font-family: var(--serif);
@@ -114,24 +120,24 @@ section { padding: 52px 0 4px; }
   line-height: 1.6;
   margin: 0 0 16px;
   letter-spacing: 0.04em;
-  color: #fff;
+  color: var(--ink);
 }
-.hero p.lead { margin: 0; max-width: 720px; color: #c3ccd4; font-size: 15.5px; }
+.hero p.lead { margin: 0; max-width: 720px; color: #454b52; font-size: 15.5px; }
 .fact-strip {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 8px 28px;
   margin: 40px 0 0;
   padding: 20px 0 26px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid var(--line);
 }
 .fact-strip div dt {
   font-size: 11px;
   letter-spacing: 0.24em;
-  color: #8fa0af;
+  color: var(--gold-dark);
   margin-bottom: 2px;
 }
-.fact-strip div dd { margin: 0; font-size: 14.5px; color: #fff; }
+.fact-strip div dd { margin: 0; font-size: 14.5px; color: var(--ink); font-weight: 600; }
 .fact-strip { }
 dl.fact-strip { display: grid; }
 
@@ -145,6 +151,7 @@ dl.fact-strip { display: grid; }
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(27, 48, 73, 0.05);
   padding: 26px 26px 22px;
 }
 .card h3 {
@@ -282,10 +289,10 @@ dl.info dd { margin: 0; }
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid #c6c3b8;
+  border: 1px solid #ddd6c4;
   border-radius: 6px;
-  box-shadow: 0 12px 32px rgba(20, 32, 46, 0.16);
-  background: #0b1120;
+  box-shadow: 0 10px 28px rgba(27, 48, 73, 0.12);
+  background: #ffffff;
 }
 .shot figcaption { margin-top: 10px; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
 .shot figcaption strong { color: var(--ink); }
@@ -308,16 +315,18 @@ dl.info dd { margin: 0; }
   margin: 0 0 26px;
 }
 
-/* フッター */
+/* フッター（ライト基調を維持し、淡い生成りで締める） */
 .site-footer {
   margin-top: 72px;
-  background: var(--ink);
-  color: #aeb9c4;
+  background: #efe9db;
+  border-top: 1px solid var(--line);
+  color: #565b61;
   padding: 32px 0;
   font-size: 14px;
 }
-.site-footer .logo { color: #fff; font-size: 18px; }
-.site-footer a { color: #fff; text-decoration: none; }
+.site-footer .logo { color: var(--ink); font-size: 18px; }
+.site-footer .logo-mark { width: 23px; height: 23px; border-radius: 5px; }
+.site-footer a { color: var(--navy); text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
 .footer-inner {
   max-width: 1040px;
