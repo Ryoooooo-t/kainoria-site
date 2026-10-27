@@ -276,6 +276,38 @@ dl.info dd { margin: 0; }
 }
 .btn:hover { background: var(--navy); }
 
+/* 実画面・図解 */
+.shot { margin: 0 0 28px; }
+.shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #c6c3b8;
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(20, 32, 46, 0.16);
+  background: #0b1120;
+}
+.shot figcaption { margin-top: 10px; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
+.shot figcaption strong { color: var(--ink); }
+.shot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; }
+@media (max-width: 700px) {
+  .shot-grid { grid-template-columns: 1fr; }
+}
+.figure-diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 26px 0 6px;
+}
+.demo-note {
+  font-size: 13px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 10px 16px;
+  margin: 0 0 26px;
+}
+
 /* フッター */
 .site-footer {
   margin-top: 72px;

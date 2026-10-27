@@ -11,7 +11,9 @@
 <meta property="og:title" content="KAINORIA | 中小製造業のための在庫管理と専用アプリ開発（大阪）">
 <meta property="og:description" content="KAINORIAは大阪を拠点とするソフトウェア事業です。中小製造業向けの在庫管理アプリ「SmartStock SME」の提供と、工場ごとの業務手順に合わせた専用アプリの受託開発を行っています。">
 <meta property="og:url" content="https://ryoooooo-t.github.io/kainoria-site/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://ryoooooo-t.github.io/kainoria-site/assets/img/og-smartstock.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ryoooooo-t.github.io/kainoria-site/assets/img/og-smartstock.jpg">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -174,6 +176,10 @@
         </div>
       </li>
     </ol>
+    <figure class="shot">
+      <img class="figure-diagram" src="assets/img/quality-gates.svg" alt="納品前の4段階の品質確認フロー図。構文チェック、テスト実行、セキュリティ静的検査、実起動ヘルス確認の順にすべて通過したものだけを納品する" width="1040" height="252" loading="lazy">
+      <figcaption>納品前の品質確認の流れ。4段階すべてを通過したものだけを納品します。</figcaption>
+    </figure>
     <div class="prose" style="margin-top:20px;">
       <p>確認に落ちた場合は、まず自動で修復を試みます。それでも直らないものは無理に進めず、人の確認に回します。製品の「SmartStock SME」についても同じ考え方で、変更のたびに自動テスト（350件以上）を全件実行し、実機での動作確認を行っています。また、SmartStock SME は事業所内のPCで完結する設計のため、業務データが外部のサーバーへ送信されることはありません。</p>
     </div>
@@ -194,6 +200,10 @@
       </div>
       <!-- 製品カードの追加はここへ（products/ に詳細ページを作り、カードを1枚足す） -->
     </div>
+    <figure class="shot" style="margin-top:28px;">
+      <img src="assets/img/ss-dashboard.webp" alt="SmartStock SMEの概要ダッシュボード画面。在庫の全体状況と、発注が必要な品目（要発注アラート）の一覧" width="1600" height="1000" loading="lazy">
+      <figcaption><strong>SmartStock SMEの実際の画面</strong>（概要ダッシュボード）。在庫の全体状況と、発注点に達した品目が一目で分かります。画面はデモデータのものです。ほかの画面は<a href="products/smartstock-sme.html">製品ページ</a>に掲載しています。</figcaption>
+    </figure>
   </section>
 
   <section id="faq">
@@ -226,6 +236,7 @@
       <h2 class="section-title">お知らせ</h2>
     </div>
     <ul class="news-list">
+      <li><time>2026年10月</time><span>製品ページとトップページに、SmartStock SME の実画面（デモデータで撮影）を掲載しました。</span></li>
       <li><time>2026年10月</time><span>「品質と開発の考え方」を掲載しました（納品前の4段階の品質確認について）。</span></li>
       <li><time>2026年10月</time><span>KAINORIA 公式サイトを公開しました。</span></li>
       <!-- お知らせの追加はここへ（li を1行足す。新しいものが上） -->

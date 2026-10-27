@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 252" role="img" aria-label="納品前の4段階の品質確認フロー図">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b08d3e"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill: #14202e; }
+    .num { font-family: "Hiragino Mincho ProN", "YuMincho", "Yu Mincho", serif; font-size: 25px; fill: #b08d3e; font-weight: 700; }
+    .ttl { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 18.5px; fill: #ffffff; font-weight: 700; }
+    .sub { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 12.5px; fill: #aeb9c4; }
+    .flow { stroke: #b08d3e; stroke-width: 2.5; }
+    .note { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 14.5px; fill: #2a2c2e; }
+    .note-b { font-weight: 700; fill: #7d6125; }
+  </style>
+
+  <rect x="0" y="0" width="1040" height="252" fill="#ffffff"/>
+
+  <!-- Gate 1 -->
+  <rect class="box" x="6" y="26" width="228" height="138" rx="6"/>
+  <text class="num" x="26" y="66">01</text>
+  <text class="ttl" x="26" y="98">構文チェック</text>
+  <text class="sub" x="26" y="126">コードの文法と</text>
+  <text class="sub" x="26" y="146">読み込み可否を確認</text>
+
+  <!-- Gate 2 -->
+  <rect class="box" x="272" y="26" width="228" height="138" rx="6"/>
+  <text class="num" x="292" y="66">02</text>
+  <text class="ttl" x="292" y="98">テスト実行</text>
+  <text class="sub" x="292" y="126">自動テストを全件実行し</text>
+  <text class="sub" x="292" y="146">失敗があれば次へ進まない</text>
+
+  <!-- Gate 3 -->
+  <rect class="box" x="538" y="26" width="228" height="138" rx="6"/>
+  <text class="num" x="558" y="66">03</text>
+  <text class="ttl" x="558" y="98">セキュリティ静的検査</text>
+  <text class="sub" x="558" y="126">危険な書き方・漏えいに</text>
+  <text class="sub" x="558" y="146">つながるパターンを検査</text>
+
+  <!-- Gate 4 -->
+  <rect class="box" x="804" y="26" width="228" height="138" rx="6"/>
+  <text class="num" x="824" y="66">04</text>
+  <text class="ttl" x="824" y="98">実起動ヘルス確認</text>
+  <text class="sub" x="824" y="126">実際に起動し、画面と</text>
+  <text class="sub" x="824" y="146">APIの応答を確認</text>
+
+  <!-- arrows -->
+  <line class="flow" x1="240" y1="95" x2="264" y2="95" marker-end="url(#arr)"/>
+  <line class="flow" x1="506" y1="95" x2="530" y2="95" marker-end="url(#arr)"/>
+  <line class="flow" x1="772" y1="95" x2="796" y2="95" marker-end="url(#arr)"/>
+
+  <!-- bottom note -->
+  <line x1="6" y1="196" x2="1032" y2="196" stroke="#d9d7cf" stroke-width="1"/>
+  <text class="note" x="520" y="228" text-anchor="middle">1つでも不合格なら<tspan class="note-b">納品しません</tspan>。自動で修復を試み、直らなければ人の確認に回します。</text>
+</svg>
