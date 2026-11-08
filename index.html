@@ -71,9 +71,9 @@
       <span class="sec-label">Business</span>
       <h2 class="section-title">事業内容</h2>
     </div>
-    <div class="card-grid">
-      <div class="card">
-        <span class="tag">受託開発</span>
+    <div class="entries">
+      <div class="entry">
+        <span class="entry-label">受託開発</span>
         <h3>専用アプリの受託開発</h3>
         <p>既製品では合わない工程管理や記録の仕組みを、その会社の手順に合わせて作ります。含まれる作業は次のとおりです。</p>
         <ul>
@@ -83,13 +83,13 @@
           <li>納品後の不具合対応と機能追加の相談</li>
         </ul>
       </div>
-      <div class="card">
-        <span class="tag">製品（SaaS）</span>
+      <div class="entry">
+        <span class="entry-label">製品（SaaS）</span>
         <h3>在庫管理アプリ「SmartStock SME」</h3>
         <p>部品・材料の在庫を工番と結びつけて管理するアプリです。在庫数だけでなく、工番・工程・外注・図面・原価までを1か所で扱います。事業所内のPCに導入し、店内ネットワークのPCやスマートフォンから使います。</p>
-        <a class="more" href="products/smartstock-sme.html">機能と動作環境を見る →</a>
+        <p><a class="more" href="products/smartstock-sme.html">機能と動作環境を見る <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p>
       </div>
-      <!-- 事業カードの追加はここへ（.card をコピーして内容を差し替える） -->
+      <!-- 事業の追加はここへ（.entry をコピーして内容を差し替える） -->
     </div>
   </section>
 
@@ -180,7 +180,7 @@
       <img class="figure-diagram" src="assets/img/quality-gates.svg" alt="納品前の4段階の品質確認フロー図。構文チェック、テスト実行、セキュリティ静的検査、実起動ヘルス確認の順にすべて通過したものだけを納品する" width="1040" height="252" loading="lazy">
       <figcaption>納品前の品質確認の流れ。4段階すべてを通過したものだけを納品します。</figcaption>
     </figure>
-    <div class="prose" style="margin-top:20px;">
+    <div class="prose mt-3">
       <p>確認に落ちた場合は、まず自動で修復を試みます。それでも直らないものは無理に進めず、人の確認に回します。製品の「SmartStock SME」についても同じ考え方で、変更のたびに自動テスト（350件以上）を全件実行し、実機での動作確認を行っています。また、SmartStock SME は事業所内のPCで完結する設計のため、業務データが外部のサーバーへ送信されることはありません。</p>
     </div>
   </section>
@@ -191,16 +191,14 @@
       <h2 class="section-title">製品・サービス</h2>
     </div>
     <p class="section-lead">提供中の製品とサービスです。今後、順次拡充していきます。</p>
-    <div class="card-grid">
-      <div class="card">
-        <span class="tag">在庫管理</span>
-        <h3>SmartStock SME</h3>
-        <p>中小製造業向けの在庫管理アプリ。在庫・有効在庫の管理、発注アラート、工番と工程の進捗、外注の持出・戻り、図面のリビジョン、工番別の原価集計に対応します。</p>
-        <a class="more" href="products/smartstock-sme.html">製品の詳細を見る →</a>
-      </div>
-      <!-- 製品カードの追加はここへ（products/ に詳細ページを作り、カードを1枚足す） -->
+    <div class="entry">
+      <span class="entry-label">在庫管理</span>
+      <h3>SmartStock SME</h3>
+      <p>中小製造業向けの在庫管理アプリ。在庫・有効在庫の管理、発注アラート、工番と工程の進捗、外注の持出・戻り、図面のリビジョン、工番別の原価集計に対応します。</p>
+      <p><a class="more" href="products/smartstock-sme.html">製品の詳細を見る <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p>
     </div>
-    <figure class="shot" style="margin-top:28px;">
+    <!-- 製品の追加はここへ（products/ に詳細ページを作り、.entry を1件足す） -->
+    <figure class="shot mt-4">
       <img src="assets/img/ss-dashboard.webp" alt="SmartStock SMEの概要ダッシュボード画面。在庫の全体状況と、発注が必要な品目（要発注アラート）の一覧" width="1600" height="1000" loading="lazy">
       <figcaption><strong>SmartStock SMEの実際の画面</strong>（概要ダッシュボード）。在庫の全体状況と、発注点に達した品目が一目で分かります。画面はデモデータのものです。ほかの画面は<a href="products/smartstock-sme.html">製品ページ</a>に掲載しています。</figcaption>
     </figure>
@@ -212,24 +210,24 @@
       <h2 class="section-title">データ提供プログラム（任意参加）</h2>
     </div>
     <p class="section-lead">貴社の「いま何がどれだけあり、いつ出せるか」という情報は、本来最大の営業材料になります。本プログラムは、ご利用中のアプリに入力された在庫や入出庫の情報を、発注先を探している企業へ届ける仕組みです。現在、発注先探しにAIを活用する企業が増えています。AIが発注先の候補として見つけられるのは「最新情報が公開されている企業」のみです。本プログラムに参加することで、貴社もその候補として選ばれるようになるメリットがあります。AI活用の流れは今後さらに加速するため、早期に参加することがより多くの機会につながります。営業に行かなくても新しい注文につながる可能性があります（注文や利益をお約束するものではありません）。参加しなくても、アプリの機能はすべてそのまま使えます。提供のしかたは、データの項目ごとに3段階（Tier）から選べます。</p>
-    <div class="card-grid">
-      <div class="card">
-        <span class="tag">Tier1</span>
+    <div class="entries">
+      <div class="entry">
+        <span class="entry-label">Tier1</span>
         <h3>匿名統計</h3>
         <p>会社名や取引先が分からない集計だけを提供します。「業界の今の動き」としてのみ使われます。</p>
       </div>
-      <div class="card">
-        <span class="tag">Tier2</span>
+      <div class="entry">
+        <span class="entry-label">Tier2</span>
         <h3>ブラインド提示</h3>
         <p>会社名は伏せたまま、地域（市区町村まで）・数量の幅・納期などを提示し、発注先の候補として見つけてもらえます。同じ属性の会社が3社未満の場合は提示しません。</p>
       </div>
-      <div class="card">
-        <span class="tag">Tier3</span>
+      <div class="entry">
+        <span class="entry-label">Tier3</span>
         <h3>開示・紹介</h3>
         <p>お問い合わせがあったときに、会社名・所在地（市区町村まで）・該当項目を、当社のAPIを通じて開示します。一度開示した情報は取り消すことはできません。開示を止めたい場合は、Tierの変更や参加の停止で即停止します。</p>
       </div>
     </div>
-    <p class="section-lead" style="margin-top:24px;">対価として、初年度（参加から12か月間）は月額利用料の割引が適用されます。割引率は項目ごとのTierの選択で決まります（Tier1＝1点、Tier2＝1.5点、Tier3＝2点として、5% × 合計点 ÷（2点 × 全項目数）、0.25%刻み）。すべてTier1で2.5%、すべてTier2で3.75%、すべてTier3で5%です。Tierはいつでも変更でき、新しい割引率は翌月のご請求から適用されます。詳しい条件は、導入時にご案内する「データ提供プログラム利用特約」に定めます。</p>
+    <p class="section-lead mt-3">対価として、初年度（参加から12か月間）は月額利用料の割引が適用されます。割引率は項目ごとのTierの選択で決まります（Tier1＝1点、Tier2＝1.5点、Tier3＝2点として、5% × 合計点 ÷（2点 × 全項目数）、0.25%刻み）。すべてTier1で2.5%、すべてTier2で3.75%、すべてTier3で5%です。Tierはいつでも変更でき、新しい割引率は翌月のご請求から適用されます。詳しい条件は、導入時にご案内する「データ提供プログラム利用特約」に定めます。</p>
   </section>
 
   <section id="faq">
@@ -286,7 +284,7 @@
   <div class="footer-inner">
     <div>
       <a class="logo" href="index.html"><img class="logo-mark" src="assets/favicon.svg" alt="" width="27" height="27">KAINORIA<span>.</span></a>
-      <div style="margin-top:6px;">© 2026 KAINORIA</div>
+      <div class="footer-copy">© 2026 KAINORIA</div>
     </div>
     <div>
       <a href="about.html">事業者情報</a>　

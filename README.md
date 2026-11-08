@@ -21,11 +21,12 @@ assets/
 1. `products/` に新しい製品ページ（例: `products/new-product.html`）を作る。
    既存の `smartstock-sme.html` をコピーして書き換えるのが早い。
    CSS のパスは `../assets/style.css`、トップへのリンクは `../index.html`。
-2. `index.html` の `#products` セクションに `.card` を 1 枚追加し、
-   詳細ページへリンクする。
+2. `index.html` の `#products` セクションに `.entry`（上罫線区切りの
+   本文ブロック）を 1 件追加し、詳細ページへリンクする。
 
 ### 機能紹介を足す
-- 製品ページの `.feature-list` に `<li>` を 1 行追加する。
+- 製品ページの本文に通常の箇条書き（`.prose` 内の `<ul>`）で追加する。
+  箱型のリスト部品は使わない。
 
 ### お知らせを足す
 - `index.html` の `#news` セクションの `.news-list` に `<li>` を 1 行追加する
@@ -41,8 +42,12 @@ assets/
   機能表は「区分 / 機能 / 内容」、動作環境は「項目 / 内容」の並びをそろえる。
 
 ### デザインを変える
-- `assets/style.css` の `:root` 変数（--navy / --teal など）を変えると
-  全ページに一括で反映される。
+- `assets/style.css` の `:root` 変数を変えると全ページに一括で反映される。
+- 色はモノクロパレット（--white / --bg / --fill / --line / --line-strong /
+  --faint / --muted / --text / --ink / --black）のみを使うこと。
+  いずれも無彩色（R=G=B）で、有彩色は追加しない。
+- 余白（margin / padding / gap）は --space-1〜10 の8ptスケール
+  （8の倍数）のみを使うこと。
 
 ## 公開方法
 
