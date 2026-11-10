@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>かんたん業務チェック | KAINORIA</title>
+<meta name="description" content="5つの質問に答えるだけで、その場で結果が出る無料の業務チェックです。どこをアプリ化すると楽になるかの目安が分かります。回答は送信されません。">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KAINORIA">
+<meta property="og:title" content="かんたん業務チェック | KAINORIA">
+<meta property="og:description" content="5つの質問で、その場で結果。アプリ化すると楽になる業務の目安が分かります。">
+<meta property="og:url" content="https://ryoooooo-t.github.io/kainoria-site/selfcheck.html">
+<meta property="og:image" content="https://ryoooooo-t.github.io/kainoria-site/assets/img/og-smartstock.jpg">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  button.btn { border: none; font: inherit; cursor: pointer; }
+  .quiz-q { border-top: 1px solid #ddd; padding: 24px 0 8px; }
+  .quiz-q h3 { margin: 0 0 16px; font-size: 1.05rem; }
+  .quiz-opts label { display: block; padding: 8px 0; cursor: pointer; }
+  .quiz-opts input { margin-right: 8px; }
+  .quiz-note { color: #555; font-size: 0.9rem; }
+  #quiz-result { display: none; border: 2px solid #111; padding: 24px; margin-top: 32px; }
+  #quiz-result h3 { margin-top: 0; }
+  #quiz-error { display: none; color: #b00020; margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="index.html"><img class="logo-mark" src="assets/favicon.svg" alt="" width="27" height="27">KAINORIA<span>.</span></a>
+    <nav class="main-nav">
+      <a href="index.html#about">KAINORIAについて</a>
+      <a href="index.html#business">事業内容</a>
+      <a href="index.html#process">ご依頼の流れ</a>
+      <a href="index.html#products">製品・サービス</a>
+      <a href="diagnosis.html">無料業務診断</a>
+      <a href="about.html">事業者情報</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <h1>かんたん業務チェック</h1>
+    <p class="lead">5つの質問に答えると、その場で結果が出ます。「どこをアプリ化すると楽になるか」の目安にどうぞ。所要時間は1分ほどです。</p>
+    <p class="quiz-note">回答はこのページの中だけで計算され、送信されることはありません。</p>
+  </div>
+</div>
+
+<main class="container">
+
+  <form id="quiz" novalidate>
+    <div class="quiz-q">
+      <h3>Q1. 業種を教えてください</h3>
+      <div class="quiz-opts">
+        <label><input type="radio" name="q1" value="ec">EC・小売</label>
+        <label><input type="radio" name="q1" value="food">飲食</label>
+        <label><input type="radio" name="q1" value="mfg">製造</label>
+        <label><input type="radio" name="q1" value="other">その他</label>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <h3>Q2. いちばん手間がかかっている業務はどれですか</h3>
+      <div class="quiz-opts">
+        <label><input type="radio" name="q2" value="stock">在庫の確認・発注</label>
+        <label><input type="radio" name="q2" value="order">受注・納期の対応</label>
+        <label><input type="radio" name="q2" value="docs">見積書・請求書づくり</label>
+        <label><input type="radio" name="q2" value="progress">作業の進捗把握</label>
+        <label><input type="radio" name="q2" value="shift">シフト・予約の調整</label>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <h3>Q3. その業務は、いま主にどうやっていますか</h3>
+      <div class="quiz-opts">
+        <label><input type="radio" name="q3" value="paper">紙・ノート</label>
+        <label><input type="radio" name="q3" value="excel">Excel</label>
+        <label><input type="radio" name="q3" value="software">既存のソフト・アプリ</label>
+        <label><input type="radio" name="q3" value="head">担当者の頭の中・口頭</label>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <h3>Q4. その作業はどれくらいの頻度で発生しますか</h3>
+      <div class="quiz-opts">
+        <label><input type="radio" name="q4" value="daily">ほぼ毎日</label>
+        <label><input type="radio" name="q4" value="weekly">週に数回</label>
+        <label><input type="radio" name="q4" value="sometimes">たまに</label>
+      </div>
+    </div>
+
+    <div class="quiz-q">
+      <h3>Q5. その業務で、漏れやミスはありますか</h3>
+      <div class="quiz-opts">
+        <label><input type="radio" name="q5" value="often">よくある</label>
+        <label><input type="radio" name="q5" value="sometimes">たまにある</label>
+        <label><input type="radio" name="q5" value="rarely">ほぼない</label>
+      </div>
+    </div>
+
+    <p style="margin-top:32px"><button type="submit" class="btn">結果を見る</button></p>
+    <p id="quiz-error">すべての質問にお答えください。</p>
+  </form>
+
+  <div id="quiz-result" aria-live="polite">
+    <span class="sec-label">Result</span>
+    <h3 id="result-title"></h3>
+    <p id="result-lead"></p>
+    <ul id="result-points"></ul>
+    <p>このチェックは目安です。無料業務診断では、貴社の公開情報も確認したうえで、診断メモと貴社向けの画面イメージを具体的にお作りします（3営業日以内・無料）。</p>
+    <p><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdtaKNSIO9zaS7fltxIxzcAYSGYfhPl9jROwg9NuGETgGhl8g/viewform">無料業務診断に申し込む</a></p>
+    <p class="quiz-note">診断の内容・進め方は<a href="diagnosis.html">無料業務診断のページ</a>にまとめています。</p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <a class="logo" href="index.html"><img class="logo-mark" src="assets/favicon.svg" alt="" width="27" height="27">KAINORIA<span>.</span></a>
+      <div class="footer-copy">© 2026 KAINORIA</div>
+    </div>
+    <div>
+      <a href="about.html">事業者情報</a>　
+      <a href="diagnosis.html">無料業務診断</a>　
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>　
+      <a href="terms.html">利用規約</a>　
+      <a href="privacy.html">プライバシーポリシー</a>　
+      <a href="mailto:kainoria.official@gmail.com">お問い合わせ</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var AREAS = {
+    stock: {
+      name: '在庫の確認・発注',
+      advice: '在庫数と発注点をいつでも同じ画面で見られるようにすると、数え直しと「あと何個あるか」の確認が大きく減ります。'
+    },
+    order: {
+      name: '受注・納期の対応',
+      advice: '注文の一覧と納期を一つの画面にまとめると、対応状況の確認や引き継ぎがその場でできるようになります。'
+    },
+    docs: {
+      name: '見積書・請求書づくり',
+      advice: '顧客情報と単価を登録しておいて書類を自動で組み立てる形にすると、毎回の手作業と転記ミスが減ります。'
+    },
+    progress: {
+      name: '作業の進捗把握',
+      advice: '案件ごとの進み具合を一覧で見られるようにすると、確認のための声かけや会議が減ります。'
+    },
+    shift: {
+      name: 'シフト・予約の調整',
+      advice: '予定を一つの画面で共有できるようにすると、調整のやり取りと二重ブッキングの心配が減ります。'
+    }
+  };
+
+  function val(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : null;
+  }
+
+  document.getElementById('quiz').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var q1 = val('q1'), q2 = val('q2'), q3 = val('q3'), q4 = val('q4'), q5 = val('q5');
+    var err = document.getElementById('quiz-error');
+    var box = document.getElementById('quiz-result');
+    if (!q1 || !q2 || !q3 || !q4 || !q5) {
+      err.style.display = 'block';
+      box.style.display = 'none';
+      return;
+    }
+    err.style.display = 'none';
+
+    var score = 0;
+    if (q3 === 'paper' || q3 === 'head') score += 2; else if (q3 === 'excel') score += 1;
+    if (q4 === 'daily') score += 2; else if (q4 === 'weekly') score += 1;
+    if (q5 === 'often') score += 2; else if (q5 === 'sometimes') score += 1;
+
+    var area = AREAS[q2];
+    var title, lead;
+    if (score >= 4) {
+      title = 'アプリ化の効果が出やすい状態です';
+      lead = 'いちばん手間のかかっている「' + area.name + '」は、頻度・やり方・ミスの出やすさの面から見て、アプリ化の効果が出やすい状態です。';
+    } else if (score >= 2) {
+      title = '一部をアプリ化すると楽になる余地があります';
+      lead = '「' + area.name + '」の一部をアプリ化すると、手間が目に見えて減る可能性があります。';
+    } else {
+      title = '今の運用でも回っている状態です';
+      lead = '「' + area.name + '」は今のやり方でも回っているようです。二重入力や引き継ぎの手間が別にあれば、その部分だけでも対象になります。';
+    }
+
+    var points = [];
+    points.push(area.advice);
+    if (q3 === 'paper') points.push('紙・ノートは探す・数える手間が毎回かかり、担当者以外には分かりにくくなりがちです。');
+    if (q3 === 'head') points.push('担当者の頭の中にある運用は、休みや退職のときの引き継ぎが一番の心配どころです。');
+    if (q3 === 'excel') points.push('Excel運用は、入力ミスと「どれが最新版か」の混乱が起きやすいところです。');
+    if (q3 === 'software') points.push('既存ソフトで合わない部分だけを専用に作る、という進め方もできます。');
+    if (q4 === 'daily') points.push('ほぼ毎日の作業は、1回あたり数分の短縮でも月単位では大きな差になります。');
+    if (q5 === 'often') points.push('漏れやミスがよくある業務は、チェックの仕組みそのものを画面側に持たせると安定します。');
+
+    document.getElementById('result-title').textContent = title;
+    document.getElementById('result-lead').textContent = lead;
+    var ul = document.getElementById('result-points');
+    ul.innerHTML = '';
+    for (var i = 0; i < points.length; i++) {
+      var li = document.createElement('li');
+      li.textContent = points[i];
+      ul.appendChild(li);
+    }
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+
+</body>
+</html>
