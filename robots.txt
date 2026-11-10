@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ryoooooo-t.github.io/kainoria-site/sitemap.xml
