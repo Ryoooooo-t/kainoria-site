@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>モール手数料・手残りシミュレーター｜Yahoo!・楽天・Amazonで1件あたりの利益を比べる</title>
+<meta name="description" content="販売価格・原価・送料を入れると、Yahoo!ショッピング・楽天市場・Amazonの3モールで1件あたり手元に残る金額と1か月の費用を比べられます。登録不要・入力した数字は送信されません。">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="canonical" href="https://kainoria.jp/tool-mall-profit.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KAINORIA">
+<meta property="og:title" content="モール手数料・手残りシミュレーター | KAINORIA">
+<meta property="og:description" content="Yahoo!ショッピング・楽天市場・Amazonの3モールで、1件あたり手元に残る金額と1か月の費用を比べられます。登録不要・入力した数字は送信されません。">
+<meta property="og:url" content="https://kainoria.jp/tool-mall-profit.html">
+<meta property="og:image" content="https://kainoria.jp/assets/img/og-smartstock.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="モール手数料・手残りシミュレーター | KAINORIA">
+<meta name="twitter:description" content="3モールで1件あたりの手残りと1か月の費用を比べられます。登録不要・入力した数字は送信されません。">
+<meta name="twitter:image" content="https://kainoria.jp/assets/img/og-smartstock.jpg">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "モール手数料・手残りシミュレーター",
+  "url": "https://kainoria.jp/tool-mall-profit.html",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web browser",
+  "inLanguage": "ja",
+  "provider": {
+    "@type": "Organization",
+    "name": "KAINORIA",
+    "url": "https://kainoria.jp/"
+  }
+}
+</script>
+<style>
+  .sim-form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); max-width: 820px; }
+  .sim-field label { display: block; font-weight: 700; color: var(--ink); font-size: 14.5px; margin-bottom: var(--space-1); }
+  .sim-field input[type="number"], .sim-field select {
+    width: 100%; font: inherit; font-size: 16px; padding: 12px;
+    border: 1px solid var(--line-strong); background: var(--white); color: var(--text); border-radius: 0;
+  }
+  .sim-field .tax-opts label { display: inline-block; font-weight: 400; color: var(--text); margin: 0 var(--space-3) 0 0; padding: 8px 0; cursor: pointer; }
+  .sim-field .tax-opts input { margin-right: 8px; }
+  @media (max-width: 640px) { .sim-form { grid-template-columns: 1fr; } }
+  .mall { border-top: 1px solid var(--line-strong); padding-top: var(--space-3); margin-top: var(--space-4); max-width: 820px; }
+  .mall h3 { font-family: var(--serif); margin: 0 0 var(--space-1); color: var(--ink); font-size: 19px; letter-spacing: 0.03em; }
+  .mall.best { border: 2px solid var(--ink); background: var(--white); padding: var(--space-3); }
+  .best-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--white); background: var(--ink); padding: 4px 8px; margin-bottom: var(--space-1); }
+  .best-label[hidden] { display: none; }
+  .net-label { display: block; font-size: 13px; color: var(--muted); }
+  .net-num { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); margin: 0 0 var(--space-2); }
+  .mall-stats { color: var(--muted); font-size: 14.5px; margin: var(--space-2) 0 0; }
+  .mall-stats strong { color: var(--ink); }
+  #sim-empty { color: var(--muted); margin-top: var(--space-4); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="index.html"><img class="logo-mark" src="assets/favicon.svg" alt="" width="27" height="27">KAINORIA<span>.</span></a>
+    <nav class="main-nav">
+      <a href="index.html#about">KAINORIAについて</a>
+      <a href="index.html#business">事業内容</a>
+      <a href="index.html#process">ご依頼の流れ</a>
+      <a href="index.html#products">製品・サービス</a>
+      <a href="diagnosis.html">無料業務診断</a>
+      <a href="about.html">事業者情報</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <h1>モール手数料・手残りシミュレーター</h1>
+    <p class="lead">その1件、いくら残る？ 販売価格・原価・送料を入れると、Yahoo!ショッピング・楽天市場・Amazonの3モールで、1件あたり手元に残る金額と1か月の費用を比べられます。</p>
+    <p class="lead mt-1">登録は不要です。入力した数字はこのページの中だけで計算され、送信されることはありません。</p>
+  </div>
+</div>
+
+<main class="container">
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-label">Simulator</span>
+      <h2 class="section-title">数字を入れる</h2>
+    </div>
+
+    <div class="sim-form" id="sim-form">
+      <div class="sim-field">
+        <label for="in-price">販売価格（1点・円）</label>
+        <input type="number" id="in-price" inputmode="numeric" min="0" placeholder="例：5000">
+        <div class="tax-opts">
+          <label><input type="radio" name="taxmode" value="incl" checked>税込で入力</label>
+          <label><input type="radio" name="taxmode" value="excl">税抜で入力</label>
+        </div>
+      </div>
+      <div class="sim-field">
+        <label for="in-discount">値引き・クーポン（出品者負担・円、任意）</label>
+        <input type="number" id="in-discount" inputmode="numeric" min="0" placeholder="0">
+      </div>
+      <div class="sim-field">
+        <label for="in-cost">原価（1点・円）</label>
+        <input type="number" id="in-cost" inputmode="numeric" min="0" placeholder="例：2000">
+      </div>
+      <div class="sim-field">
+        <label for="in-shipping">送料（出品者負担・1件・円）</label>
+        <input type="number" id="in-shipping" inputmode="numeric" min="0" placeholder="例：600">
+      </div>
+      <div class="sim-field">
+        <label for="in-packing">梱包費（1件・円）</label>
+        <input type="number" id="in-packing" inputmode="numeric" min="0" placeholder="例：100">
+      </div>
+      <div class="sim-field">
+        <label for="in-orders">月間注文件数（件）</label>
+        <input type="number" id="in-orders" inputmode="numeric" min="1" placeholder="例：100">
+      </div>
+      <div class="sim-field">
+        <label for="in-category">商品カテゴリ（Amazonの料率に使います）</label>
+        <select id="in-category">
+          <option value="fashion">服・ファッション小物</option>
+          <option value="food">食品</option>
+          <option value="daily">日用品・雑貨</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="sim-field">
+        <label for="in-rakuten-plan">楽天市場のプラン</label>
+        <select id="in-rakuten-plan">
+          <option value="ganbare">がんばれ！プラン</option>
+          <option value="standard">スタンダードプラン</option>
+        </select>
+      </div>
+      <div class="sim-field">
+        <label for="in-amazon-plan">Amazonの出品プラン</label>
+        <select id="in-amazon-plan">
+          <option value="individual">小口出品</option>
+          <option value="pro">大口出品</option>
+        </select>
+      </div>
+    </div>
+    <p class="note-text">金額は円で入れてください。原価・送料・梱包費は、実際に支払う金額（税込）をそのまま差し引いて計算します。くわしい計算のしかたは、このページの下の「計算のしかた」に書いています。</p>
+
+    <p id="sim-empty">販売価格と月間注文件数を入力すると、ここに3モールの結果が出ます。</p>
+
+    <div id="sim-results" hidden>
+      <div class="spec-wrap mt-4">
+        <table class="spec">
+          <caption>3モールの比較（まとめ）</caption>
+          <thead>
+            <tr><th>モール</th><th>1件あたりの手残り</th><th>1か月のモール費用</th><th>1か月の手残り</th><th>損益分岐の販売価格</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="name">Yahoo!ショッピング</td><td id="cmp-net-yahoo">—</td><td id="cmp-mfee-yahoo">—</td><td id="cmp-mnet-yahoo">—</td><td id="cmp-be-yahoo">—</td></tr>
+            <tr><td class="name">楽天市場</td><td id="cmp-net-rakuten">—</td><td id="cmp-mfee-rakuten">—</td><td id="cmp-mnet-rakuten">—</td><td id="cmp-be-rakuten">—</td></tr>
+            <tr><td class="name">Amazon</td><td id="cmp-net-amazon">—</td><td id="cmp-mfee-amazon">—</td><td id="cmp-mnet-amazon">—</td><td id="cmp-be-amazon">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mall" id="mall-yahoo">
+        <span class="best-label" hidden>いちばん手残りが多い</span>
+        <h3>Yahoo!ショッピング</h3>
+        <span class="net-label">1件あたりの手残り</span>
+        <p class="net-num"><span id="net-yahoo">—</span>円</p>
+        <div class="spec-wrap">
+          <table class="spec">
+            <thead><tr><th>手数料の内訳（1件あたり）</th><th>金額</th><th>割合</th></tr></thead>
+            <tbody id="bd-yahoo"></tbody>
+          </table>
+        </div>
+        <p class="mall-stats">1か月のモール費用 <strong><span id="mfee-yahoo">—</span>円</strong>　／　1か月の手残り <strong><span id="mnet-yahoo">—</span>円</strong>　／　損益分岐の販売価格 <strong><span id="be-yahoo">—</span>円</strong></p>
+      </div>
+
+      <div class="mall" id="mall-rakuten">
+        <span class="best-label" hidden>いちばん手残りが多い</span>
+        <h3>楽天市場</h3>
+        <span class="net-label">1件あたりの手残り</span>
+        <p class="net-num"><span id="net-rakuten">—</span>円</p>
+        <div class="spec-wrap">
+          <table class="spec">
+            <thead><tr><th>手数料の内訳（1件あたり）</th><th>金額</th><th>割合</th></tr></thead>
+            <tbody id="bd-rakuten"></tbody>
+          </table>
+        </div>
+        <p class="mall-stats">1か月のモール費用 <strong><span id="mfee-rakuten">—</span>円</strong>　／　1か月の手残り <strong><span id="mnet-rakuten">—</span>円</strong>　／　損益分岐の販売価格 <strong><span id="be-rakuten">—</span>円</strong></p>
+      </div>
+
+      <div class="mall" id="mall-amazon">
+        <span class="best-label" hidden>いちばん手残りが多い</span>
+        <h3>Amazon</h3>
+        <span class="net-label">1件あたりの手残り</span>
+        <p class="net-num"><span id="net-amazon">—</span>円</p>
+        <div class="spec-wrap">
+          <table class="spec">
+            <thead><tr><th>手数料の内訳（1件あたり）</th><th>金額</th><th>割合</th></tr></thead>
+            <tbody id="bd-amazon"></tbody>
+          </table>
+        </div>
+        <p class="mall-stats">1か月のモール費用 <strong><span id="mfee-amazon">—</span>円</strong>　／　1か月の手残り <strong><span id="mnet-amazon">—</span>円</strong>　／　損益分岐の販売価格 <strong><span id="be-amazon">—</span>円</strong></p>
+      </div>
+
+      <p class="note-text">手残りが思ったより少ない場合、手数料だけでなく、在庫・受注の回し方そのものが原因のこともあります。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-label">How it works</span>
+      <h2 class="section-title">計算のしかた</h2>
+    </div>
+    <div class="prose">
+      <p>実際の販売価格は、販売価格から値引き・クーポン（出品者負担分）を引いた金額です。税抜で入力した場合は、販売価格と値引きに消費税10%を加えた金額で計算します。手数料は、実際の販売価格（税込）に対して、各モールの料率で計算します。</p>
+      <p>1件あたりの手残り ＝ 実際の販売価格 − 原価 − 送料 − 梱包費 − 手数料（売上に応じてかかる分） − 月額固定費 ÷ 月間注文件数</p>
+      <p>1か月のモール費用 ＝ 月額固定費 ＋ 月間注文件数 × 手数料（売上に応じてかかる分）／ 1か月の手残り ＝ 月間注文件数 ×（実際の販売価格 − 原価 − 送料 − 梱包費 − 手数料）− 月額固定費</p>
+      <p>損益分岐の販売価格 ＝（原価 ＋ 送料 ＋ 梱包費 ＋ 月額固定費 ÷ 月間注文件数）÷（1 − 手数料の実効率）を、円単位で切り上げた金額です。手数料の実効率には、いま入力している条件での手数料（売上に応じてかかる分）の、販売価格に対する割合を使います。</p>
+      <p>金額は円未満を四捨五入して表示しています。値引き・クーポンは1円未満を切り捨てます。手数料の金額は税別です（手数料にかかる消費税は含みません）。</p>
+    </div>
+
+    <div class="spec-wrap mt-4">
+      <table class="spec">
+        <caption>使っている料率（2026年11月17日に各モールの公式ページで確認）</caption>
+        <thead>
+          <tr><th>モール</th><th>項目</th><th>料率・金額</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="cat">Yahoo!ショッピング</td><td>月額システム利用料</td><td>10,000円（税別）</td></tr>
+          <tr><td class="cat">Yahoo!ショッピング</td><td>売上ロイヤリティ</td><td>2.5%</td></tr>
+          <tr><td class="cat">Yahoo!ショッピング</td><td>決済サービス利用料</td><td>3.24%（クレジットカード決済で計算。PayPay残高等は3.0%など、決済方法で異なります）</td></tr>
+          <tr><td class="cat">Yahoo!ショッピング</td><td>ストアポイント原資</td><td>1%（必須の最低率）</td></tr>
+          <tr><td class="cat">楽天市場</td><td>月額出店料</td><td>がんばれ！プラン 25,000円／スタンダードプラン 65,000円（税別）</td></tr>
+          <tr><td class="cat">楽天市場</td><td>システム利用料</td><td>プランと経路（パソコン／モバイル）ごとに、月間売上高の段階で変わる料率（がんばれ！プラン： パソコン3.5〜6.5%・モバイル4.0〜7.0%、スタンダードプラン： パソコン2.0〜4.0%・モバイル2.5〜4.5%）。パソコン経由20.5%・モバイル経由79.5%の比率で計算</td></tr>
+          <tr><td class="cat">楽天市場</td><td>楽天ペイ利用料</td><td>月間決済高と平均決済単価で変わる料率（2.5〜3.5%）</td></tr>
+          <tr><td class="cat">楽天市場</td><td>楽天ポイント原資</td><td>1.0%（楽天会員の購入代金・税抜に対して。通常時）</td></tr>
+          <tr><td class="cat">楽天市場</td><td>取引の安全性・利便性向上のためのシステム利用料</td><td>月間売上高の0.1%</td></tr>
+          <tr><td class="cat">Amazon</td><td>出品プラン</td><td>大口出品は月額4,900円（税別）、小口出品は売れた1点ごとに100円（税別）</td></tr>
+          <tr><td class="cat">Amazon</td><td>販売手数料</td><td>カテゴリと金額で変わる料率（最低30円）。服・ファッション小物： 750円以下5%、2,500円以下8.4%、3,000円以下12.4%、3,000円超は3,000円まで12.4%＋超える分8.4%。食品： 750円以下5%、1,500円以下8.4%、それ以上10.4%。日用品・雑貨／その他： 750円以下5%、それ以上15.4%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose mt-4">
+      <p>このツールは試算です。実際の請求額とは異なる場合があります。料率は改定されることがあるため、出店・プラン変更の判断の前に、各モールの公式ページで最新の内容を確認してください。</p>
+      <p>含んでいない費用： アフィリエイト経由の売上にかかる報酬（Yahoo!ショッピングのアフィリエイトパートナー報酬、楽天スーパーアフィリエイト）、ポイント原資の設定を最低率より上げた分、広告費、オプションサービスの料金。ポイント・アフィリエイト経由の売上が多い店は、ここに出た金額より手数料が増えます。</p>
+      <p>楽天市場： 初期登録費用60,000円（税別・出店時に1回）は含みません。月額出店料は2027年2月1日から、がんばれ！プラン34,000円・スタンダードプラン90,000円（税別）に改定される予定です。このツールは現行の料金で計算しています。R-Messe利用料は無料期間中のため含みません。</p>
+      <p>Yahoo!ショッピング: 2027年1月から始まる予定のLINEショッピングタブ掲載経由料金（経由2〜4%）は含みません。</p>
+      <p>Amazon: FBA（フルフィルメント by Amazon）を使う場合の配送代行手数料・在庫保管手数料は含みません。自社で配送する前提の計算です。</p>
+      <p>出典： <a href="https://business-ec.yahoo.co.jp/shopping/cost/">Yahoo!ショッピング 料金・費用</a>／<a href="https://business-ec.yahoo.co.jp/shopping/settlement/">Yahoo!ショッピング 決済サービス</a>／<a href="https://www.rakuten.co.jp/ec/">楽天市場 出店のご案内</a>（出店プラン・費用の詳細は公式資料「出店までの流れ」）／<a href="https://sell.amazon.co.jp/pricing">Amazon出品サービス 料金プラン</a>（いずれも2026年11月17日確認）</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-label">Related</span>
+      <h2 class="section-title">ほかの読み物</h2>
+    </div>
+    <div class="prose">
+      <p><a href="column-ec-excel-limits.html">ネットショップでExcelの在庫管理がしんどくなる、5つのサイン</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-label">Next step</span>
+      <h2 class="section-title">うちの場合はどうか、を確かめる</h2>
+    </div>
+    <p class="section-lead">手数料を引いたあとの手残りは、売る場所だけでなく、在庫・受注の回し方でも変わります。5つの質問に答えるとその場で目安が出る「かんたん業務チェック」（1分ほど）を用意しています。もう少し具体的に見たい場合は、無料業務診断で、貴社の公開情報も確認したうえで、診断メモと画面イメージをお送りします。診断は無料で、受け取ったあとに契約を前提とする必要はありません。</p>
+    <p><a class="btn" href="selfcheck.html">かんたん業務チェックをやってみる</a></p>
+    <p class="section-lead mt-3"><a href="diagnosis.html">無料業務診断の内容を見る</a></p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <a class="logo" href="index.html"><img class="logo-mark" src="assets/favicon.svg" alt="" width="27" height="27">KAINORIA<span>.</span></a>
+      <div class="footer-copy">© 2026 KAINORIA</div>
+    </div>
+    <div>
+      <a href="about.html">事業者情報</a>　
+      <a href="diagnosis.html">無料業務診断</a>　
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>　
+      <a href="terms.html">利用規約</a>　
+      <a href="privacy.html">プライバシーポリシー</a>　
+      <a href="mailto:kainoria.official@gmail.com">お問い合わせ</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ---- Rakuten system fee tiers (cumulative by monthly sales bracket) ----
+  var SYS_TIERS = {
+    ganbare_pc:     [[500000, 0.065], [1000000, 0.060], [5000000, 0.055], [10000000, 0.045], [Infinity, 0.035]],
+    ganbare_mobile: [[500000, 0.070], [1000000, 0.065], [5000000, 0.060], [10000000, 0.050], [Infinity, 0.040]],
+    standard_pc:    [[500000, 0.040], [1000000, 0.035], [5000000, 0.030], [10000000, 0.025], [Infinity, 0.020]],
+    standard_mobile:[[500000, 0.045], [1000000, 0.040], [5000000, 0.035], [10000000, 0.030], [Infinity, 0.025]]
+  };
+  function tiered(amount, tiers) {
+    var total = 0, prev = 0, i, bound;
+    for (i = 0; i < tiers.length; i++) {
+      bound = tiers[i][0];
+      if (amount <= prev) break;
+      total += (Math.min(amount, bound) - prev) * tiers[i][1];
+      prev = bound;
+    }
+    return total;
+  }
+
+  // ---- Rakuten Pay fee table (cumulative; rows = avg order value, cols = monthly payment volume) ----
+  var PAY_BOUNDS = [1000000, 2000000, 3000000, 5000000, 10000000, 30000000, 100000000, 500000000, Infinity];
+  var PAY_ROWS = [
+    [0.035, 0.034, 0.034, 0.033, 0.033, 0.032, 0.032, 0.030, 0.029],
+    [0.034, 0.034, 0.033, 0.033, 0.032, 0.032, 0.030, 0.029, 0.028],
+    [0.033, 0.033, 0.033, 0.032, 0.032, 0.030, 0.029, 0.028, 0.027],
+    [0.033, 0.033, 0.032, 0.032, 0.030, 0.029, 0.028, 0.027, 0.026],
+    [0.032, 0.032, 0.032, 0.030, 0.029, 0.028, 0.027, 0.026, 0.025],
+    [0.032, 0.032, 0.030, 0.029, 0.028, 0.027, 0.026, 0.025, 0.025]
+  ];
+  function payRowIndex(avg) {
+    if (avg <= 7000) return 0;
+    if (avg <= 15000) return 1;
+    if (avg <= 25000) return 2;
+    if (avg <= 35000) return 3;
+    if (avg <= 50000) return 4;
+    return 5;
+  }
+  function rakutenPayMonthly(sales, avg) {
+    var rates = PAY_ROWS[payRowIndex(avg)], total = 0, prev = 0, i, bound;
+    for (i = 0; i < PAY_BOUNDS.length; i++) {
+      bound = PAY_BOUNDS[i];
+      if (sales <= prev) break;
+      total += (Math.min(sales, bound) - prev) * rates[i];
+      prev = bound;
+    }
+    return total;
+  }
+
+  // ---- Amazon referral fee by category (minimum 30 yen) ----
+  function amazonReferral(cat, t) {
+    var amt;
+    if (cat === 'fashion') {
+      if (t <= 750) amt = t * 0.05;
+      else if (t <= 2500) amt = t * 0.084;
+      else if (t <= 3000) amt = t * 0.124;
+      else amt = 3000 * 0.124 + (t - 3000) * 0.084;
+    } else if (cat === 'food') {
+      amt = t * (t <= 750 ? 0.05 : (t <= 1500 ? 0.084 : 0.104));
+    } else {
+      amt = t * (t <= 750 ? 0.05 : 0.154);
+    }
+    return Math.max(amt, 30);
+  }
+
+  function raw(id) { return document.getElementById(id).value; }
+  function num(id) {
+    var v = parseFloat(raw(id), 10);
+    return (isNaN(v) || v < 0) ? 0 : v;
+  }
+  function fmt(n) { return Math.round(n).toLocaleString('ja-JP'); }
+  function pct(part, whole) { return (part / whole * 100).toFixed(2) + '%'; }
+
+  function finish(T, costs, N, variable, fixed) {
+    var net = T - costs - variable - fixed / N;
+    var mfee = fixed + N * variable;
+    var mnet = N * (T - costs - variable) - fixed;
+    var r = variable / T;
+    var be = Math.ceil((costs + fixed / N) / (1 - r));
+    return { net: net, mfee: mfee, mnet: mnet, be: be };
+  }
+
+  function renderMall(key, T, N, components, variable, fixed) {
+    var bd = document.getElementById('bd-' + key);
+    bd.innerHTML = '';
+    for (var i = 0; i < components.length; i++) {
+      var tr = document.createElement('tr');
+      var td1 = document.createElement('td'); td1.textContent = components[i][0];
+      var td2 = document.createElement('td'); td2.textContent = fmt(components[i][1]) + '円';
+      var td3 = document.createElement('td'); td3.textContent = pct(components[i][1], T);
+      tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+      bd.appendChild(tr);
+    }
+    return null;
+  }
+
+  function recalc() {
+    var priceRaw = raw('in-price'), ordersRaw = raw('in-orders');
+    var results = document.getElementById('sim-results');
+    var empty = document.getElementById('sim-empty');
+    var price = num('in-price'), discount = num('in-discount');
+    var cost = num('in-cost'), shipping = num('in-shipping'), packing = num('in-packing');
+    var orders = Math.floor(num('in-orders'));
+    var taxmode = document.querySelector('input[name="taxmode"]:checked').value;
+    var T;
+    if (taxmode === 'incl') T = price - Math.floor(discount);
+    else T = price * 1.1 - Math.floor(discount * 1.1);
+
+    if (priceRaw === '' || ordersRaw === '' || price <= 0 || T <= 0 || orders < 1) {
+      results.hidden = true;
+      empty.hidden = false;
+      return;
+    }
+    results.hidden = false;
+    empty.hidden = true;
+
+    var N = orders, S = T * N, costs = cost + shipping + packing;
+    var cat = document.getElementById('in-category').value;
+    var rplan = document.getElementById('in-rakuten-plan').value;
+    var aplan = document.getElementById('in-amazon-plan').value;
+    var malls = {};
+
+    // Yahoo!
+    var yRoyalty = T * 0.025, ySettle = T * 0.0324, yPoint = T * 0.01;
+    var yVar = yRoyalty + ySettle + yPoint, yFixed = 10000;
+    malls.yahoo = {
+      components: [
+        ['売上ロイヤリティ（2.5%）', yRoyalty],
+        ['決済サービス利用料（3.24%）', ySettle],
+        ['ストアポイント原資（1%）', yPoint],
+        ['月額システム利用料の1件あたり分', yFixed / N]
+      ],
+      result: finish(T, costs, N, yVar, yFixed)
+    };
+
+    // Rakuten
+    var sysMonthly = tiered(S * 0.205, SYS_TIERS[rplan + '_pc']) + tiered(S * 0.795, SYS_TIERS[rplan + '_mobile']);
+    var payMonthly = rakutenPayMonthly(S, T);
+    var rSys = sysMonthly / N, rPay = payMonthly / N;
+    var rPoint = (T / 1.1) * 0.01, rSafety = T * 0.001;
+    var rVar = rSys + rPay + rPoint + rSafety;
+    var rFixed = (rplan === 'ganbare') ? 25000 : 65000;
+    malls.rakuten = {
+      components: [
+        ['システム利用料', rSys],
+        ['楽天ペイ利用料', rPay],
+        ['楽天ポイント原資（1.0%）', rPoint],
+        ['取引の安全性・利便性向上のためのシステム利用料（0.1%）', rSafety],
+        ['月額出店料の1件あたり分', rFixed / N]
+      ],
+      result: finish(T, costs, N, rVar, rFixed)
+    };
+
+    // Amazon
+    var ref = amazonReferral(cat, T), aVar, aFixed, aComponents;
+    if (aplan === 'individual') {
+      aVar = ref + 100; aFixed = 0;
+      aComponents = [
+        ['販売手数料', ref],
+        ['小口出品の料金（1点100円）', 100]
+      ];
+    } else {
+      aVar = ref; aFixed = 4900;
+      aComponents = [
+        ['販売手数料', ref],
+        ['大口出品の月額料金の1件あたり分', aFixed / N]
+      ];
+    }
+    malls.amazon = { components: aComponents, result: finish(T, costs, N, aVar, aFixed) };
+
+    var keys = ['yahoo', 'rakuten', 'amazon'], i, key, m;
+    var bestNet = -Infinity;
+    for (i = 0; i < keys.length; i++) {
+      if (malls[keys[i]].result.net > bestNet) bestNet = malls[keys[i]].result.net;
+    }
+    for (i = 0; i < keys.length; i++) {
+      key = keys[i]; m = malls[key];
+      renderMall(key, T, N, m.components);
+      document.getElementById('net-' + key).textContent = fmt(m.result.net);
+      document.getElementById('mfee-' + key).textContent = fmt(m.result.mfee);
+      document.getElementById('mnet-' + key).textContent = fmt(m.result.mnet);
+      document.getElementById('be-' + key).textContent = fmt(m.result.be);
+      document.getElementById('cmp-net-' + key).textContent = fmt(m.result.net) + '円';
+      document.getElementById('cmp-mfee-' + key).textContent = fmt(m.result.mfee) + '円';
+      document.getElementById('cmp-mnet-' + key).textContent = fmt(m.result.mnet) + '円';
+      document.getElementById('cmp-be-' + key).textContent = fmt(m.result.be) + '円';
+      var block = document.getElementById('mall-' + key);
+      var isBest = Math.round(m.result.net) === Math.round(bestNet);
+      if (isBest) block.classList.add('best'); else block.classList.remove('best');
+      block.querySelector('.best-label').hidden = !isBest;
+    }
+  }
+
+  document.getElementById('sim-form').addEventListener('input', recalc);
+  document.getElementById('sim-form').addEventListener('change', recalc);
+  recalc();
+})();
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6487cdf479694a0b864066387532e9af"}'></script>
+</body>
+</html>
