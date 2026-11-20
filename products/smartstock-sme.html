@@ -42,12 +42,13 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="../index.html"><img class="logo-mark" src="../assets/favicon.svg" alt="" width="27" height="27">KAINORIA<span>.</span></a>
-    <nav class="main-nav">
-      <a href="../index.html#about">KAINORIAについて</a>
-      <a href="../index.html#business">事業内容</a>
-      <a href="../index.html#process">ご依頼の流れ</a>
-      <a href="../index.html#products">製品・サービス</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav">
+      <a href="../index.html">目指す世界</a>
+      <a href="../products.html">製品・サービス</a>
+      <a href="../pricing.html">料金・FAQ</a>
       <a href="../about.html">事業者情報</a>
+      <a class="lp-nav-cta" href="../diagnosis.html">無料業務診断</a>
     </nav>
   </div>
 </header>
@@ -203,7 +204,7 @@
     </div>
     <p class="section-lead">現在の在庫管理の方法を確認し、この製品が合うかどうかも含めてご案内します。相談はメールで受け付けています。</p>
     <p><a class="btn" href="mailto:kainoria.official@gmail.com">kainoria.official@gmail.com へメールする</a></p>
-    <p class="mt-3"><a class="back-link" href="../index.html#products"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>製品・サービス一覧へ戻る</a></p>
+    <p class="mt-3"><a class="back-link" href="../products.html"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>製品・サービス一覧へ戻る</a></p>
   </section>
 
 </main>
@@ -225,5 +226,18 @@
 </footer>
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6487cdf479694a0b864066387532e9af"}'></script>
+<script>
+/* hamburger menu */
+(function () {
+  var toggle = document.getElementById('navToggle');
+  if (!toggle) return;
+  function close() { document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded', 'false'); }
+  toggle.addEventListener('click', function () {
+    var open = document.body.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('#mainNav a').forEach(function (a) { a.addEventListener('click', close); });
+})();
+</script>
 </body>
 </html>

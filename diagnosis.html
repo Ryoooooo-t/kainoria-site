@@ -49,12 +49,11 @@
     <a class="logo" href="index.html"><img class="logo-mark" src="assets/favicon.svg" alt="" width="27" height="27">KAINORIA<span>.</span></a>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>
     <nav class="main-nav" id="mainNav">
-      <a href="index.html#about">KAINORIAについて</a>
-      <a href="index.html#business">事業内容</a>
-      <a href="index.html#process">ご依頼の流れ</a>
-      <a href="index.html#products">製品・サービス</a>
-      <a href="diagnosis.html">無料業務診断</a>
+      <a href="index.html">目指す世界</a>
+      <a href="products.html">製品・サービス</a>
+      <a href="pricing.html">料金・FAQ</a>
       <a href="about.html">事業者情報</a>
+      <a class="lp-nav-cta" href="diagnosis.html">無料業務診断</a>
     </nav>
   </div>
 </header>
@@ -72,8 +71,72 @@
 <main class="container">
 
   <div class="prose">
-    <p>KAINORIAは大阪府を拠点とするソフトウェア事業です。在庫管理アプリ「SmartStock SME」の開発・提供と、中小企業向け専用アプリの受託開発を行っています。製品の実画面と、納品前の4段階の品質確認の考え方は<a href="index.html">トップページ</a>に掲載しています。<a href="about.html">事業者情報</a>・<a href="tokushoho.html">特定商取引法に基づく表記</a>も公開しています。</p>
+    <p>KAINORIAは大阪府を拠点とするソフトウェア事業です。在庫管理アプリ「SmartStock SME」の開発・提供と、中小企業向け専用アプリの受託開発を行っています。製品の実画面は<a href="products.html">製品・サービスページ</a>に、納品前の4段階の品質確認の考え方は<a href="pricing.html#quality">料金・FAQページ</a>に掲載しています。<a href="about.html">事業者情報</a>・<a href="tokushoho.html">特定商取引法に基づく表記</a>も公開しています。</p>
   </div>
+
+  <section id="pain" class="lp-section" data-reveal>
+      <div class="sec-head">
+        <span class="sec-label">Checklist</span>
+        <h2 class="section-title">こんな在庫・業務の手間、抱えていませんか</h2>
+      </div>
+      <p class="section-lead">表計算ソフトや紙と記憶に頼る運用では、日々の確認や付け合わせに時間がかかり続けます。当てはまる項目にチェックを入れてみてください。</p>
+
+      <div class="lp-pain-grid">
+        <div class="lp-pain-card">
+          <fieldset class="lp-pain-fieldset">
+            <legend class="lp-pain-legend">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              ネットショップ（EC）の現場
+            </legend>
+            <div class="lp-check-group">
+              <label class="lp-check-item" for="pain-ec-1">
+                <input type="checkbox" id="pain-ec-1">
+                <span>モールごとに在庫数を手で合わせる</span>
+              </label>
+              <label class="lp-check-item" for="pain-ec-2">
+                <input type="checkbox" id="pain-ec-2">
+                <span>売り越しが起きる</span>
+              </label>
+              <label class="lp-check-item" for="pain-ec-3">
+                <input type="checkbox" id="pain-ec-3">
+                <span>付け合わせに毎日時間を取られる</span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="lp-pain-card">
+          <fieldset class="lp-pain-fieldset">
+            <legend class="lp-pain-legend">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
+              中小製造業の現場
+            </legend>
+            <div class="lp-check-group">
+              <label class="lp-check-item" for="pain-mfg-1">
+                <input type="checkbox" id="pain-mfg-1">
+                <span>どの工番に使う在庫か追えない</span>
+              </label>
+              <label class="lp-check-item" for="pain-mfg-2">
+                <input type="checkbox" id="pain-mfg-2">
+                <span>発注漏れ・二重発注が起きる</span>
+              </label>
+              <label class="lp-check-item" for="pain-mfg-3">
+                <input type="checkbox" id="pain-mfg-3">
+                <span>担当者の記憶頼みになっている</span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="lp-cta-strip">
+        <p class="lp-cta-strip-text">1つでも当てはまる場合は、まず「どこをアプリ化すると楽になるか」を無料業務診断で整理できます。</p>
+        <a class="btn" href="#apply">
+          無料業務診断に申し込む（約3分）
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
 
   <section id="what">
     <div class="sec-head">
@@ -254,6 +317,108 @@
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   document.querySelectorAll('#mainNav a').forEach(function (a) { a.addEventListener('click', close); });
+})();
+</script>
+<script>
+(function () {
+  var root = document.documentElement;
+  var motionOk = window.matchMedia && window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+  function revealTargetForHash(hash) {
+    if (!hash || hash.length < 2) return;
+    try {
+      var target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (!target) return;
+      var section = target.closest('[data-reveal]');
+      if (section) section.classList.add('is-visible');
+    } catch (e) {
+      /* ignore malformed hash */
+    }
+  }
+
+  if (motionOk && 'IntersectionObserver' in window) {
+    var revealEls = document.querySelectorAll('[data-reveal]');
+    if (revealEls.length > 0) {
+      root.classList.add('js-reveal');
+      revealTargetForHash(window.location.hash);
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.01, rootMargin: '0px 0px -24px 0px' });
+
+      revealEls.forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.95) {
+          el.classList.add('is-visible');
+        } else {
+          io.observe(el);
+        }
+      });
+
+      window.addEventListener('hashchange', function () {
+        revealTargetForHash(window.location.hash);
+      });
+    }
+  }
+
+  var hero = document.querySelector('.lp-hero');
+  var stage = document.querySelector('.lp-hero-stage');
+  if (hero && stage && window.matchMedia) {
+    var desktopQuery = window.matchMedia('(min-width: 960px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+    var rafId = 0;
+    var targetRx = 0;
+    var targetRy = 0;
+    var targetPx = 0;
+    var targetPy = 0;
+
+    function applyVars() {
+      rafId = 0;
+      stage.style.setProperty('--rx', targetRx.toFixed(2) + 'deg');
+      stage.style.setProperty('--ry', targetRy.toFixed(2) + 'deg');
+      stage.style.setProperty('--px', targetPx.toFixed(2) + 'px');
+      stage.style.setProperty('--py', targetPy.toFixed(2) + 'px');
+    }
+
+    function schedule() {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(applyVars);
+      }
+    }
+
+    function resetVars() {
+      targetRx = 0;
+      targetRy = 0;
+      targetPx = 0;
+      targetPy = 0;
+      schedule();
+    }
+
+    hero.addEventListener('pointermove', function (e) {
+      if (!desktopQuery.matches) return;
+      var rect = hero.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      var nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      var ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      targetRy = nx * 4;
+      targetRx = -ny * 3;
+      targetPx = nx * 8;
+      targetPy = ny * 6;
+      schedule();
+    });
+
+    hero.addEventListener('pointerleave', resetVars);
+
+    if (desktopQuery.addEventListener) {
+      desktopQuery.addEventListener('change', function (e) {
+        if (!e.matches) resetVars();
+      });
+    }
+  }
 })();
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6487cdf479694a0b864066387532e9af"}'></script>

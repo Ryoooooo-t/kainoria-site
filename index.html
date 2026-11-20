@@ -3,670 +3,291 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="LherUwSPZOXrutjD_isHlZRBnY6tINkCAENJqf2nSyo">
-<title>KAINORIA | 中小製造業のための在庫管理と専用アプリ開発（大阪）</title>
-<meta name="description" content="KAINORIAは大阪を拠点とするソフトウェア事業です。中小製造業向けの在庫管理アプリ「SmartStock SME」の提供と、工場ごとの業務手順に合わせた専用アプリの受託開発を行っています。">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>KAINORIAの目指す世界 | KAINORIA</title>
+<meta name="description" content="AIエージェントとリアルの交差点を作る。KAINORIAが目指す世界と、そのために中小企業の現場をデジタルにつなぐ理由を紹介します。">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://kainoria.jp/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="KAINORIA">
-<meta property="og:title" content="KAINORIA | 中小製造業のための在庫管理と専用アプリ開発（大阪）">
-<meta property="og:description" content="KAINORIAは大阪を拠点とするソフトウェア事業です。中小製造業向けの在庫管理アプリ「SmartStock SME」の提供と、工場ごとの業務手順に合わせた専用アプリの受託開発を行っています。">
-<meta property="og:url" content="https://kainoria.jp/">
-<meta property="og:image" content="https://kainoria.jp/assets/img/og-smartstock.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/jpeg">
-<meta name="twitter:title" content="KAINORIA | 中小製造業のための在庫管理と専用アプリ開発（大阪）">
-<meta name="twitter:description" content="KAINORIAは大阪を拠点とするソフトウェア事業です。中小製造業向けの在庫管理アプリ「SmartStock SME」の提供と、工場ごとの業務手順に合わせた専用アプリの受託開発を行っています。">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://kainoria.jp/assets/img/og-smartstock.jpg">
-<link rel="stylesheet" href="assets/style.css">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "name": "KAINORIA",
-      "url": "https://kainoria.jp/",
-      "logo": "https://kainoria.jp/assets/favicon.svg",
-      "email": "kainoria.official@gmail.com"
-    },
-    {
-      "@type": "WebSite",
-      "name": "KAINORIA",
-      "url": "https://kainoria.jp/"
-    }
-  ]
-}
-</script>
+<style>
+  :root{
+    --bg:#070708; --bg2:#0E0E10; --panel:#131316; --line:#2B2B31;
+    --text:#F4F4F6; --muted:#A9A9B4; --accent:#4D8DFF; --accent2:#22C3E6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:"Hiragino Kaku Gothic ProN","Noto Sans CJK JP",sans-serif;line-height:1.8;}
+  a{color:inherit;text-decoration:none;}
+  .site-header{position:fixed;inset:0 0 auto 0;z-index:20;background:rgba(7,7,8,.72);backdrop-filter:blur(8px);border-bottom:1px solid rgba(77,141,255,.18);}
+  .header-inner{max-width:1120px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+  .logo{font-size:20px;letter-spacing:.28em;font-weight:700;}
+  .logo span{color:var(--accent);}
+  .main-nav{display:flex;gap:24px;font-size:13px;color:var(--muted);flex-wrap:wrap;}
+  .main-nav a:hover{color:#fff;}
+  .nav-toggle{display:none;background:none;border:0;padding:10px;cursor:pointer;flex-direction:column;gap:6px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--text);transition:transform .25s,opacity .25s;}
+  body.nav-open .nav-toggle span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  body.nav-open .nav-toggle span:nth-child(2){opacity:0;}
+  body.nav-open .nav-toggle span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+  /* HERO (scroll-driven) */
+  .hero-scroll{height:340vh;position:relative;}
+  .hero{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+  .hero .video-wrap{position:absolute;inset:0;opacity:0;transform:scale(.94);}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.35) brightness(.94);}
+  .hero .hero-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;filter:saturate(.35) brightness(.94);}
+  /* static mode (mobile / reduced motion / save-data): no scroll scrub, still image + title */
+  body.static-hero .hero-scroll{height:100vh;}
+  body.static-hero .video-wrap{display:none;}
+  body.static-hero .hero-still{display:block;}
+  body.static-hero .title-block{opacity:1;transform:none;}
+  body.static-hero .scroll-cue{display:none;}
+  .hero .title-block{opacity:0;transform:translateY(24px);}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(7,7,8,.18) 0%,rgba(7,7,8,.55) 62%,rgba(7,7,8,.92) 100%),linear-gradient(180deg,rgba(7,7,8,.45) 0%,rgba(7,7,8,0) 30%,rgba(7,7,8,0) 62%,var(--bg) 100%);}
+  .hero-inner{position:relative;z-index:2;padding:120px 24px 96px;max-width:880px;}
+  .hero .kicker{font-size:13px;letter-spacing:.42em;color:var(--accent2);margin-bottom:24px;}
+  .hero h1{font-size:52px;line-height:1.35;letter-spacing:.04em;font-weight:700;text-shadow:0 4px 32px rgba(0,0,0,.65);}
+  .hero .tagline{margin-top:32px;font-size:21px;color:#DEDEE6;letter-spacing:.06em;}
+  .hero .tagline b{color:#fff;border-bottom:2px solid var(--accent);padding-bottom:2px;}
+  .scroll-cue{margin-top:64px;font-size:11px;letter-spacing:.4em;color:var(--muted);}
+  .scroll-cue::after{content:"";display:block;width:1px;height:48px;margin:12px auto 0;background:linear-gradient(180deg,var(--accent),transparent);}
+  /* SECTIONS */
+  section{padding:112px 24px;}
+  .wrap{max-width:1120px;margin:0 auto;}
+  .sec-label{font-size:12px;letter-spacing:.4em;color:var(--accent2);margin-bottom:16px;}
+  h2{font-size:34px;line-height:1.5;letter-spacing:.03em;margin-bottom:24px;}
+  .lead{color:var(--muted);max-width:720px;font-size:16px;}
+  .lead-strong{color:var(--text);max-width:760px;font-size:18px;margin-bottom:24px;}
+  .alt{background:var(--bg2);}
+  /* scattered chips */
+  .scatter{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px;max-width:880px;}
+  .chip{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:16px 24px;font-size:14px;color:var(--muted);}
+  .chip:nth-child(2){transform:translateY(16px) rotate(-1.2deg);}
+  .chip:nth-child(3){transform:translateY(-8px) rotate(1deg);}
+  .chip:nth-child(4){transform:translateY(10px) rotate(.6deg);}
+  .chip:nth-child(5){transform:translateY(-4px) rotate(-.8deg);}
+  /* connect */
+  .connect-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;margin-top:48px;align-items:stretch;}
+  .big-card{border:1px solid var(--line);background:linear-gradient(160deg,#15151A,#0B0B0D);border-radius:16px;padding:40px;}
+  .big-card h3{font-size:22px;margin-bottom:16px;}
+  .big-card p{color:var(--muted);font-size:15px;}
+  .mini-card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:24px;}
+  .mini-card .tag{display:inline-block;font-size:11px;letter-spacing:.2em;color:var(--accent2);border:1px solid var(--line);border-radius:999px;padding:4px 12px;margin-bottom:16px;}
+  .mini-card img{width:100%;border-radius:8px;display:block;margin-bottom:16px;}
+  .mini-card h4{font-size:16px;margin-bottom:8px;}
+  .mini-card p{color:var(--muted);font-size:13px;}
+  /* intersection */
+  .cross{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:48px;}
+  .cross img{width:100%;display:block;}
+  .cross .cap{position:absolute;left:0;right:0;bottom:0;padding:32px;background:linear-gradient(180deg,transparent,rgba(7,7,8,.92));}
+  .cross .cap p{color:#E4E4EA;font-size:15px;max-width:720px;}
+  /* facts */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
+  .fact{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:24px;text-align:left;}
+  .fact .v{font-size:28px;font-weight:700;color:#fff;}
+  .fact .k{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.6;}
+  /* CTA */
+  .cta-box{border:1px solid var(--accent);background:linear-gradient(160deg,#15151A,#0B0B0D);border-radius:16px;padding:56px 40px;text-align:center;}
+  .cta-box h2{margin-bottom:16px;}
+  .cta-box p{color:var(--muted);margin-bottom:32px;}
+  .btn{display:inline-block;background:#2563EB;color:#fff;font-weight:700;padding:16px 40px;border-radius:8px;font-size:15px;}
+  .btn-sub{display:inline-block;border:1px solid var(--line);color:var(--text);padding:16px 32px;border-radius:8px;font-size:15px;margin-left:16px;}
+  footer{border-top:1px solid rgba(77,141,255,.18);padding:40px 24px;color:var(--muted);font-size:13px;}
+  .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  @media (max-width:959px){
+    .nav-toggle{display:flex;}
+    .main-nav{display:none;}
+    body.nav-open .main-nav{display:flex;position:fixed;inset:57px 0 auto 0;z-index:19;flex-direction:column;gap:0;background:rgba(7,7,8,.97);border-bottom:1px solid var(--line);padding:8px 24px 16px;font-size:16px;}
+    body.nav-open .main-nav a{padding:14px 0;border-bottom:1px solid rgba(77,141,255,.14);}
+    body.nav-open .main-nav a:last-child{border-bottom:0;}
+    .hero h1{font-size:34px;}
+    .hero .tagline{font-size:17px;}
+    h2{font-size:26px;}
+    section{padding:72px 20px;}
+    .connect-grid{grid-template-columns:1fr;}
+    .facts{grid-template-columns:repeat(2,1fr);}
+    .btn-sub{margin-left:0;margin-top:16px;}
+    .chip{transform:none !important;}
+  }
+</style>
 </head>
-<body class="page-lp">
-
-<a class="skip-link visually-hidden" href="#main-content">本文へスキップ</a>
+<body>
 
 <header class="site-header">
   <div class="header-inner">
-    <a class="logo" href="index.html"><img class="logo-mark" src="assets/favicon.svg" alt="" width="27" height="27">KAINORIA<span>.</span></a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>
-    <nav class="main-nav" id="mainNav" aria-label="メイン">
-      <a href="#pain">よくある課題</a>
-      <a href="#diagnosis">無料診断</a>
-      <a href="#products">製品・サービス</a>
-      <a href="#process">進み方</a>
-      <a href="#pricing">料金</a>
-      <a href="#faq">FAQ</a>
-      <a href="about.html">事業者情報</a>
-      <a class="lp-nav-cta" href="diagnosis.html">無料業務診断</a>
+    <a class="logo" href="index.html">KAINORIA<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav">
+      <a href="#real">リアルの世界</a><a href="#connect">接続</a><a href="#cross">交差点</a><a href="products.html">製品・サービス</a><a href="pricing.html">料金・FAQ</a><a href="diagnosis.html">無料業務診断</a>
     </nav>
   </div>
 </header>
 
-<main id="main-content" tabindex="-1">
-
-  <section id="about" class="lp-hero">
-    <div class="container">
-      <div class="lp-hero-grid">
-        <div class="lp-hero-copy">
-          <p class="lp-eyebrow">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg>
-            ネットショップ・中小製造業の在庫管理と専用アプリ開発
-          </p>
-          <h1 class="lp-hero-title">Excelの在庫管理、その手間ごと引き受けます。</h1>
-          <p class="lp-hero-lead">ネットショップのモール間での二重管理・売り越しや、中小製造業の工番と結びついた部品・材料の在庫管理まで。現場向け在庫管理アプリ「SmartStock SME」と、御社の手順に合わせた専用アプリの受託開発で、Excelと紙の管理にかかる手間を引き受けます。</p>
-          <div class="lp-hero-actions">
-            <a class="btn lp-btn-lg" href="diagnosis.html">
-              無料業務診断に申し込む（約3分）
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-            <a class="lp-btn-secondary" href="products/smartstock-sme.html">製品を見る</a>
-          </div>
-          <p class="lp-hero-note">届くもの：業務診断メモ1枚＋貴社向け画面イメージ1枚（契約前提なし）</p>
-        </div>
-
-        <div class="lp-hero-visual">
-          <div class="lp-hero-stage">
-            <div class="lp-hero-tilt">
-              <div class="lp-screen-frame">
-                <div class="lp-screen-bar" aria-hidden="true">
-                  <span class="lp-window-dots"><span></span><span></span><span></span></span>
-                  <span>SmartStock SME — 概要ダッシュボード</span>
-                </div>
-                <img src="assets/img/ss-dashboard.webp" alt="SmartStock SMEの概要ダッシュボード画面。在庫の全体状況と要発注アラートの一覧" width="1600" height="1000" fetchpriority="high">
-              </div>
-            </div>
-            <div class="lp-float-cards" aria-label="SmartStock SMEの主な実機能">
-              <div class="lp-float-card lp-float-card--1">
-                <span class="lp-float-icon" aria-hidden="true">
-                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
-                </span>
-                <div>
-                  <span class="lp-float-title">発注アラート</span>
-                  <span class="lp-float-sub">発注点を下回る品目を一覧で通知</span>
-                </div>
-              </div>
-              <div class="lp-float-card lp-float-card--2">
-                <span class="lp-float-icon" aria-hidden="true">
-                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v10"/></svg>
-                </span>
-                <div>
-                  <span class="lp-float-title">工番・工程の進捗</span>
-                  <span class="lp-float-sub">工番ごとの進行と引当を一元表示</span>
-                </div>
-              </div>
-              <div class="lp-float-card lp-float-card--3">
-                <span class="lp-float-icon" aria-hidden="true">
-                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
-                </span>
-                <div>
-                  <span class="lp-float-title">工番別原価</span>
-                  <span class="lp-float-sub">材料・外注・加工の集計とCSV出力</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="lp-hero-caption">画面はデモデータで撮影した実際の動作画面です（SmartStock SME 概要ダッシュボード）。</p>
-        </div>
-      </div>
-
-      <dl class="lp-fact-strip">
-        <div class="lp-fact-item">
-          <span class="lp-fact-icon" aria-hidden="true">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
-          </span>
-          <div>
-            <dt>導入・保守の基準料金</dt>
-            <dd>初期198,000円〜＋月額9,800円（税別）</dd>
-          </div>
-        </div>
-        <div class="lp-fact-item">
-          <span class="lp-fact-icon" aria-hidden="true">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </span>
-          <div>
-            <dt>無料業務診断の目安</dt>
-            <dd>無料診断は3営業日以内に返送</dd>
-          </div>
-        </div>
-        <div class="lp-fact-item">
-          <span class="lp-fact-icon" aria-hidden="true">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-          </span>
-          <div>
-            <dt>拠点・打ち合わせ方法</dt>
-            <dd>大阪拠点・オンライン対応可</dd>
-          </div>
-        </div>
-      </dl>
+<div class="hero-scroll" id="heroScroll">
+  <div class="hero">
+    <div class="video-wrap" id="videoWrap">
+      <video id="heroVideo" data-src="vision/hero-web.mp4" poster="vision/poster.jpg" muted playsinline preload="auto"></video>
     </div>
-  </section>
-
-  <section id="pain" class="lp-section" data-reveal>
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-label">Checklist</span>
-        <h2 class="section-title">こんな在庫・業務の手間、抱えていませんか</h2>
+    <img class="hero-still" src="vision/network.jpg" alt="">
+    <div class="hero-inner">
+      <div class="title-block" id="titleBlock">
+        <div class="kicker">VISION</div>
+        <h1>KAINORIAの<br>目指す世界</h1>
+        <p class="tagline"><b>AIエージェントとリアルの交差点</b>を作る。</p>
       </div>
-      <p class="section-lead">表計算ソフトや紙と記憶に頼る運用では、日々の確認や付け合わせに時間がかかり続けます。当てはまる項目にチェックを入れてみてください。</p>
+      <div class="scroll-cue" id="scrollCue">SCROLL</div>
+    </div>
+  </div>
+</div>
 
-      <div class="lp-pain-grid">
-        <div class="lp-pain-card">
-          <fieldset class="lp-pain-fieldset">
-            <legend class="lp-pain-legend">
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              ネットショップ（EC）の現場
-            </legend>
-            <div class="lp-check-group">
-              <label class="lp-check-item" for="pain-ec-1">
-                <input type="checkbox" id="pain-ec-1">
-                <span>モールごとに在庫数を手で合わせる</span>
-              </label>
-              <label class="lp-check-item" for="pain-ec-2">
-                <input type="checkbox" id="pain-ec-2">
-                <span>売り越しが起きる</span>
-              </label>
-              <label class="lp-check-item" for="pain-ec-3">
-                <input type="checkbox" id="pain-ec-3">
-                <span>付け合わせに毎日時間を取られる</span>
-              </label>
-            </div>
-          </fieldset>
-        </div>
+<section id="real">
+  <div class="wrap">
+    <div class="sec-label">THE REAL WORLD</div>
+    <h2>リアルの業務は、AIからは見えない。</h2>
+    <p class="lead-strong" id="manifesto"><span class="rl">これから数年で、商品の売買の主役は人からAIエージェントへ移っていきます。</span><span class="rl">AIが発注先を探し、条件を比べ、取引を決める時代に、生き残れるのはAIに見つけてもらえる会社です。</span><span class="rl">ただし、AIが取引できるのはデジタル上に情報があるものだけです。</span></p>
+    <p class="lead">中小企業の現場では、いま何がどれだけあって、何ができて、いつ届けられるかが、紙とExcelと、担当者の記憶の中にあります。その情報は会社の外に出ることがなく、AIエージェントが探しに来ても、見つけることができません。実在する会社の「できること」が、デジタルの世界からは存在しないことになっている。それが、いまの姿です。</p>
+    <div class="scatter">
+      <div class="chip">紙の注文書とFAX</div>
+      <div class="chip">Excelの在庫表（最新版がどれか分からない）</div>
+      <div class="chip">担当者の記憶頼みの納期回答</div>
+      <div class="chip">電話でしか確認できない在庫</div>
+      <div class="chip">モールごとに手で合わせる数字</div>
+    </div>
+  </div>
+</section>
 
-        <div class="lp-pain-card">
-          <fieldset class="lp-pain-fieldset">
-            <legend class="lp-pain-legend">
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
-              中小製造業の現場
-            </legend>
-            <div class="lp-check-group">
-              <label class="lp-check-item" for="pain-mfg-1">
-                <input type="checkbox" id="pain-mfg-1">
-                <span>どの工番に使う在庫か追えない</span>
-              </label>
-              <label class="lp-check-item" for="pain-mfg-2">
-                <input type="checkbox" id="pain-mfg-2">
-                <span>発注漏れ・二重発注が起きる</span>
-              </label>
-              <label class="lp-check-item" for="pain-mfg-3">
-                <input type="checkbox" id="pain-mfg-3">
-                <span>担当者の記憶頼みになっている</span>
-              </label>
-            </div>
-          </fieldset>
-        </div>
+<section id="connect" class="alt">
+  <div class="wrap">
+    <div class="sec-label">CONNECTION</div>
+    <h2>一社ずつ、リアルの業務をデジタルにつなぐ。</h2>
+    <p class="lead">KAINORIAは、既製品を当てはめるのではなく、その会社の手順に合わせた専用アプリを作ります。開発にAIを活用して作るコストを抑え、小規模な現場でも導入できる形で、リアルの業務をデジタル側へ接続していきます。</p>
+    <div class="connect-grid">
+      <div class="big-card">
+        <h3>専用アプリの受託開発</h3>
+        <p>在庫管理・受発注・工程管理・記録の仕組みなど、既製品では合わない業務を、その会社の運用に合わせて設計・開発します。共通基盤の上に各社専用の仕組みを組み合わせることで、オーダーメイドでありながら導入しやすい価格を実現します。業務がアプリで回り始めたとき、その会社の「いま何がどれだけあり、何ができるか」が、初めてデジタルの側から読める情報になります。</p>
       </div>
-
-      <div class="lp-cta-strip">
-        <p class="lp-cta-strip-text">1つでも当てはまる場合は、まず「どこをアプリ化すると楽になるか」を無料業務診断で整理できます。</p>
-        <a class="btn" href="diagnosis.html">
-          無料業務診断に申し込む（約3分）
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
+      <div class="mini-card">
+        <span class="tag">実装例のひとつ</span>
+        <img src="vision/ss-dashboard.webp" alt="SmartStock SMEの概要ダッシュボード画面">
+        <h4>在庫管理アプリ「SmartStock SME」</h4>
+        <p>部品・材料の在庫を工番と結びつけて管理するアプリ。接続の取り組みから生まれた、最初の実装例です。</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="diagnosis" class="lp-section lp-section--tinted" data-reveal>
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-label">Free Diagnosis</span>
-        <h2 class="section-title">無料業務診断で届くもの</h2>
-      </div>
-      <p class="section-lead">Excelや紙で回している業務について、アプリ化できる点を整理した「業務診断メモ」1枚と「貴社向けの画面イメージ」1枚を無料でお送りします。申し込みは約3分、返送は3営業日以内。診断のあとに契約を前提とする必要はありません。</p>
-
-      <div class="lp-meta-grid">
-        <div class="lp-meta-card">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-          <div>
-            <span class="lp-meta-label">お送りする内容</span>
-            <span class="lp-meta-value">診断メモ1枚＋貴社向け画面イメージ1枚</span>
-          </div>
-        </div>
-        <div class="lp-meta-card">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <div>
-            <span class="lp-meta-label">申込と返送の目安</span>
-            <span class="lp-meta-value">申込約3分／3営業日以内に返送</span>
-          </div>
-        </div>
-        <div class="lp-meta-card">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-          <div>
-            <span class="lp-meta-label">費用・条件</span>
-            <span class="lp-meta-value">無料・契約前提なし</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="lp-sample-grid">
-        <figure class="lp-sample-card">
-          <div class="lp-sample-frame">
-            <img src="assets/img/diagnosis-sample-memo.png" alt="業務診断メモの見本。株式会社あかり製作所を例に、今の困りごと、アプリ化できる業務（優先順位つき）、進め方と費用感の概算をA4・1枚にまとめたもの" width="1588" height="1872" loading="lazy">
-          </div>
-          <figcaption>
-            <p class="lp-sample-title">業務診断メモ（見本）</p>
-            <p class="lp-sample-desc">「今の困りごと」「アプリ化できる業務（優先順位つき）」「進め方と費用感の概算」の3点を、貴社専用にA4・1枚へ整理します。</p>
-          </figcaption>
-        </figure>
-
-        <figure class="lp-sample-card">
-          <div class="lp-sample-frame">
-            <img src="assets/img/diagnosis-sample-screen.png" alt="貴社向け画面イメージの見本。株式会社あかり製作所の在庫管理画面で、在庫アイテム数・発注点アラート・品目ごとの現在庫と発注点の一覧を表示したもの" width="2240" height="1600" loading="lazy">
-          </div>
-          <figcaption>
-            <p class="lp-sample-title">貴社向け画面イメージ（見本）</p>
-            <p class="lp-sample-desc">診断メモで挙げた業務が、実際にどんな画面で回るようになるかを1枚の画面イメージにしてお付けします。</p>
-          </figcaption>
-        </figure>
-      </div>
-
-      <p class="lp-sample-note">※ 見本は架空のデモ企業「株式会社あかり製作所」を例にしたものです。実際の診断では、貴社の公開情報とお申し込み内容をもとに貴社専用で作成します。</p>
-
-      <div class="lp-section-cta">
-        <a class="btn" href="diagnosis.html">
-          無料業務診断に申し込む（約3分）
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-        <a class="more" href="diagnosis.html#sample">無料業務診断の詳しい内容を見る <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-      </div>
+<section id="cross">
+  <div class="wrap">
+    <div class="sec-label">THE INTERSECTION</div>
+    <h2>AIエージェントとリアルの交差点。</h2>
+    <p class="lead">会社が一社ずつつながると、その先に新しい場所が生まれます。発注先を探すAIエージェントが、実在の企業の「いま何がどれだけあり、いつ出せるか」に出会える場所。KAINORIAが作るのは、AIエージェントとリアルの交差点です。</p>
+    <div class="cross">
+      <img src="vision/network.jpg" alt="地球上に広がるネットワークのイメージ">
+      <div class="cap"><p>つながった会社の情報は、本来その会社最大の営業材料です。営業に行かなくても、探している側から見つけてもらえる。交差点は、参加する会社が増えるほど、すべての会社にとって価値のある場所になります。</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="products" class="lp-section" data-reveal>
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-label">Products &amp; Services</span>
-        <h2 class="section-title">製品・サービス</h2>
-      </div>
-      <p class="section-lead">まず在庫管理を製品として用意し、製品では合わない業務手順やネットショップ・周辺業務は受託開発で個別に対応します。</p>
-
-      <div class="lp-service-grid">
-        <article class="lp-service-card">
-          <div class="lp-service-head">
-            <span class="lp-badge lp-badge--accent">製品（SaaS）／在庫管理</span>
-            <svg class="icon lp-service-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg>
-          </div>
-          <h3>SmartStock SME</h3>
-          <p>部品・材料の在庫を工番と結びつけて管理する中小製造業向けアプリです。事業所内のPCに導入し、店内ネットワークのPCやスマートフォンから使います。業務データが外部サーバーへ送信されることはありません。</p>
-          <ul class="lp-service-list" role="list">
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>在庫・有効在庫の管理と発注アラート・発注書ドラフト（CSV）</span>
-            </li>
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>工番と工程の進捗、外注の持出・戻り管理</span>
-            </li>
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>図面のリビジョン管理と工番別の原価集計</span>
-            </li>
-          </ul>
-          <div class="lp-service-foot">
-            <a class="more" href="products/smartstock-sme.html">機能と動作環境・画面一覧を見る <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          </div>
-        </article>
-
-        <article id="business" class="lp-service-card">
-          <div class="lp-service-head">
-            <span class="lp-badge">受託開発／オーダーメイド</span>
-            <svg class="icon lp-service-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          </div>
-          <h3>専用アプリの受託開発</h3>
-          <p>既製品では合わない工程管理・受発注・在庫連携や記録の仕組みを、その会社の手順に合わせて作ります。開発工程にAIを活用して作るコストを抑え、小規模な現場でも導入を検討できる専用ソフトウェアを提供します。</p>
-          <ul class="lp-service-list" role="list">
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>現場の手順と困りごとのヒアリング</span>
-            </li>
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>設計・開発（動作テスト、セキュリティ検査を含む）</span>
-            </li>
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>納品時の導入・初期設定・使い方の説明と納品後の保守</span>
-            </li>
-          </ul>
-          <div class="lp-service-foot">
-            <a class="more" href="diagnosis.html">無料業務診断で専用アプリを相談する <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-          </div>
-        </article>
-      </div>
+<section>
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>まずは、御社の業務を診断します。</h2>
+      <p>業務診断メモ1枚と、貴社向けの画面イメージ1枚を、3営業日以内に無料でお送りします。</p>
+      <a class="btn" href="diagnosis.html">無料業務診断に申し込む（約3分）</a><a class="btn-sub" href="index.html">トップへ戻る</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="process" class="lp-section lp-section--tinted" data-reveal>
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-label">Process</span>
-        <h2 class="section-title">ご依頼の進み方</h2>
-      </div>
-      <p class="section-lead">まずは現在の管理方法と困っている点をお聞きし、作る範囲と金額・期間の目安をご提示したうえで進めます。</p>
-
-      <ol class="lp-process-grid" role="list">
-        <li class="lp-step-card">
-          <span class="lp-step-num">STEP 01</span>
-          <h3>相談・ヒアリング</h3>
-          <p>無料業務診断またはメールで相談を受け付けます。現在の管理方法と、困っている点を教えてください。</p>
-        </li>
-        <li class="lp-step-card">
-          <span class="lp-step-num">STEP 02</span>
-          <h3>提案・見積もり</h3>
-          <p>作る範囲と金額、期間の目安を先に提示します。内容が合わなければ、この時点で終了しても問題ありません。</p>
-        </li>
-        <li class="lp-step-card">
-          <span class="lp-step-num">STEP 03</span>
-          <h3>開発・納品</h3>
-          <p>AIを活用して開発し、導入・初期設定と現場向けの使い方説明まで行います。納品後の不具合対応や機能追加も相談できます。</p>
-        </li>
-      </ol>
-
-      <div id="quality" class="lp-quality-bar">
-        <p class="lp-quality-summary-line">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span><strong>品質4ゲート：</strong>受託開発の納品物は「構文チェック → テスト実行 → セキュリティ静的検査 → 実起動ヘルス確認」の4段階をすべて通過したものだけに限定しています。</span>
-        </p>
-        <details class="lp-quality-detail">
-          <summary>4段階の品質確認フローとテスト体制の詳細を見る</summary>
-          <div class="lp-quality-detail-body">
-            <img class="figure-diagram" src="assets/img/quality-gates.svg" alt="納品前の4段階の品質確認フロー図。構文チェック、テスト実行、セキュリティ静的検査、実起動ヘルス確認の順にすべて通過したものだけを納品する" width="1040" height="252" loading="lazy">
-            <p>確認に落ちた場合は自動で修復を試み、それでも直らないものは無理に進めず人の確認に回します。製品の「SmartStock SME」についても、変更のたびに自動テスト（350件以上）を全件実行し、実機での動作確認を行っています。</p>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing" class="lp-section" data-reveal>
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-label">Pricing</span>
-        <h2 class="section-title">価格</h2>
-      </div>
-      <p class="section-lead">基準となる料金体系です。料金は機能に合わせて相談可能です。</p>
-
-      <div class="lp-pricing-grid">
-        <div class="lp-price-card">
-          <span class="lp-badge">基準料金</span>
-          <h3>初期導入パッケージ</h3>
-          <div class="lp-price-figures">
-            <p class="lp-price-main">
-              <span class="lp-price-label">初期費用</span>
-              <span class="lp-price-amount">198,000円</span>
-              <span class="lp-price-tax">（税別）</span>
-            </p>
-            <p class="lp-price-sub">＋ 月額保守 9,800円（税別）</p>
-          </div>
-          <ul class="lp-price-list" role="list">
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>初期導入パッケージと納品後の保守対応を含みます</span>
-            </li>
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>詳しい見積りは無料診断後にご希望いただいた場合のみ作成します</span>
-            </li>
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>料金は機能に合わせて相談可能です。</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="lp-price-card lp-price-card--monitor">
-          <span class="lp-badge lp-badge--accent">先行モニター募集中</span>
-          <h3>先行モニター</h3>
-          <div class="lp-price-figures">
-            <p class="lp-price-main">
-              <span class="lp-price-label">初期費用</span>
-              <span class="lp-price-amount">98,000円</span>
-              <span class="lp-price-tax">（税別）</span>
-            </p>
-            <p class="lp-price-sub">＋ 月額保守 9,800円（税別）</p>
-          </div>
-          <ul class="lp-price-list" role="list">
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>先行モニターとして、初期費用を98,000円（税別）でご提供します</span>
-            </li>
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>対価条件：事例紹介の許可＋感想へのご協力</span>
-            </li>
-            <li>
-              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>料金は機能に合わせて相談可能です。</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="lp-section-cta">
-        <a class="btn" href="diagnosis.html">
-          無料業務診断に申し込む（約3分）
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-        <p class="lp-pricing-note">※ 料金は機能に合わせて相談可能です。まずは無料業務診断で範囲と概算を確認できます。</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="lp-section lp-section--tinted" data-reveal>
-    <div class="container">
-      <div class="sec-head">
-        <span class="sec-label">FAQ</span>
-        <h2 class="section-title">よくある質問</h2>
-      </div>
-      <div class="lp-faq-list">
-        <details class="lp-faq-item">
-          <summary>工場にインターネット回線がなくても使えますか</summary>
-          <div class="lp-faq-answer">
-            <p>SmartStock SMEは事業所内のPCに導入して動かすため、インターネット接続は必須ではありません。同じネットワーク内のPCやスマートフォンのブラウザから利用でき、データが外部のサーバーへ送られることはありません。</p>
-          </div>
-        </details>
-        <details class="lp-faq-item">
-          <summary>今のExcelの在庫表から移行できますか</summary>
-          <div class="lp-faq-answer">
-            <p>製品には、原価集計や発注書ドラフトなどをCSV形式で出力する機能があります。導入時のデータ移行については、現在の表の形式を確認したうえで、対応できる範囲を相談時に決めます。</p>
-          </div>
-        </details>
-        <details class="lp-faq-item">
-          <summary>対応できる地域はどこですか</summary>
-          <div class="lp-faq-answer">
-            <p>大阪を拠点としています。打ち合わせはオンラインでも対応できます。</p>
-          </div>
-        </details>
-        <details class="lp-faq-item">
-          <summary>相談はどこからできますか</summary>
-          <div class="lp-faq-answer">
-            <p>下記のお問い合わせ先メールアドレスへ、現在の管理方法と困っている点を書いて送ってください。</p>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="lp-section" data-reveal>
-    <div class="container">
-      <div class="lp-final-cta">
-        <div class="sec-head">
-          <span class="sec-label">Contact</span>
-          <h2 class="section-title">まずは無料業務診断、またはメールでご相談ください</h2>
-        </div>
-        <p class="section-lead">無料業務診断では、業務診断メモ1枚と貴社向け画面イメージ1枚を3営業日以内にお送りします。製品の導入や受託開発のご相談はメールでも受け付けています。</p>
-        <div class="lp-final-actions">
-          <a class="btn lp-btn-lg" href="diagnosis.html">
-            無料業務診断に申し込む（約3分）
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <a class="lp-btn-secondary" href="mailto:kainoria.official@gmail.com">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            kainoria.official@gmail.com へメールする
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
+<footer>
   <div class="footer-inner">
-    <div>
-      <a class="logo" href="index.html"><img class="logo-mark" src="assets/favicon.svg" alt="" width="27" height="27">KAINORIA<span>.</span></a>
-      <div class="footer-copy">© 2026 KAINORIA</div>
-    </div>
-    <nav class="lp-footer-nav" aria-label="フッター">
-      <a href="vision/index.html">KAINORIAの目指す世界</a>
-      <a href="about.html">事業者情報</a>
+    <div>KAINORIA.</div>
+    <nav style="display:flex;gap:20px;flex-wrap:wrap;">
       <a href="diagnosis.html">無料業務診断</a>
-      <a href="products/smartstock-sme.html">SmartStock SME</a>
+      <a href="products.html">製品・サービス</a>
+      <a href="pricing.html">料金・FAQ</a>
+      <a href="about.html">事業者情報</a>
       <a href="tokushoho.html">特定商取引法に基づく表記</a>
-      <a href="terms.html">利用規約</a>
-      <a href="privacy.html">プライバシーポリシー</a>
-      <a href="mailto:kainoria.official@gmail.com">お問い合わせ</a>
     </nav>
+    <div>© 2026 KAINORIA</div>
   </div>
 </footer>
 
 <script>
-(function () {
-  var root = document.documentElement;
-  var motionOk = window.matchMedia && window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
-
-  function revealTargetForHash(hash) {
-    if (!hash || hash.length < 2) return;
-    try {
-      var target = document.getElementById(decodeURIComponent(hash.slice(1)));
-      if (!target) return;
-      var section = target.closest('[data-reveal]');
-      if (section) section.classList.add('is-visible');
-    } catch (e) {
-      /* ignore malformed hash */
-    }
-  }
-
-  if (motionOk && 'IntersectionObserver' in window) {
-    var revealEls = document.querySelectorAll('[data-reveal]');
-    if (revealEls.length > 0) {
-      root.classList.add('js-reveal');
-      revealTargetForHash(window.location.hash);
-
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.01, rootMargin: '0px 0px -24px 0px' });
-
-      revealEls.forEach(function (el) {
-        var rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.95) {
-          el.classList.add('is-visible');
-        } else {
-          io.observe(el);
-        }
-      });
-
-      window.addEventListener('hashchange', function () {
-        revealTargetForHash(window.location.hash);
-      });
-    }
-  }
-
-  var hero = document.querySelector('.lp-hero');
-  var stage = document.querySelector('.lp-hero-stage');
-  if (hero && stage && window.matchMedia) {
-    var desktopQuery = window.matchMedia('(min-width: 960px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
-    var rafId = 0;
-    var targetRx = 0;
-    var targetRy = 0;
-    var targetPx = 0;
-    var targetPy = 0;
-
-    function applyVars() {
-      rafId = 0;
-      stage.style.setProperty('--rx', targetRx.toFixed(2) + 'deg');
-      stage.style.setProperty('--ry', targetRy.toFixed(2) + 'deg');
-      stage.style.setProperty('--px', targetPx.toFixed(2) + 'px');
-      stage.style.setProperty('--py', targetPy.toFixed(2) + 'px');
-    }
-
-    function schedule() {
-      if (!rafId) {
-        rafId = window.requestAnimationFrame(applyVars);
-      }
-    }
-
-    function resetVars() {
-      targetRx = 0;
-      targetRy = 0;
-      targetPx = 0;
-      targetPy = 0;
-      schedule();
-    }
-
-    hero.addEventListener('pointermove', function (e) {
-      if (!desktopQuery.matches) return;
-      var rect = hero.getBoundingClientRect();
-      if (!rect.width || !rect.height) return;
-      var nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      var ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-      targetRy = nx * 4;
-      targetRx = -ny * 3;
-      targetPx = nx * 8;
-      targetPy = ny * 6;
-      schedule();
-    });
-
-    hero.addEventListener('pointerleave', resetVars);
-
-    if (desktopQuery.addEventListener) {
-      desktopQuery.addEventListener('change', function (e) {
-        if (!e.matches) resetVars();
-      });
-    }
-  }
-})();
-</script>
-<script>
-/* hamburger menu */
-(function () {
+/* hamburger menu (works in both full and static modes) */
+(function(){
   var toggle = document.getElementById('navToggle');
   if (!toggle) return;
-  function close() { document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded', 'false'); }
-  toggle.addEventListener('click', function () {
+  function close(){ document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded', 'false'); }
+  toggle.addEventListener('click', function(){
     var open = document.body.classList.toggle('nav-open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-  document.querySelectorAll('#mainNav a').forEach(function (a) { a.addEventListener('click', close); });
+  document.querySelectorAll('#mainNav a').forEach(function(a){ a.addEventListener('click', close); });
 })();
 </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6487cdf479694a0b864066387532e9af"}'></script>
+<script src="vision/gsap.min.js"></script>
+<script src="vision/ScrollTrigger.min.js"></script>
+<script src="vision/lenis.min.js"></script>
+<script>
+(function(){
+  var video = document.getElementById('heroVideo');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var smallScreen = window.matchMedia('(max-width: 767px)').matches;
+  var saveData = !!(navigator.connection && navigator.connection.saveData);
+  var hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+
+  /* 3) static fallback: mobile, reduced motion, or save-data -> still image + title, no video download */
+  if (reduced || smallScreen || saveData || !hasGsap) {
+    document.body.classList.add('static-hero');
+    window.__mode = 'static';
+    return;
+  }
+  window.__mode = 'full';
+  video.src = video.getAttribute('data-src');
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* 2) Lenis smooth scroll (single scroll driver, wired into ScrollTrigger) */
+  var lenis = null;
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    window.__lenis = lenis;
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var id = a.getAttribute('href');
+        if (id.length > 1 && document.querySelector(id)) { e.preventDefault(); lenis.scrollTo(id); }
+      });
+    });
+  }
+
+  /* 1) GSAP ScrollTrigger hero choreography (same beats as the hand-rolled version) */
+  var proxy = { t: 0 };
+  var lastSeek = -1;
+  var tl = gsap.timeline({
+    scrollTrigger: { trigger: '#heroScroll', start: 'top top', end: 'bottom bottom', scrub: 0.4 },
+    defaults: { ease: 'none' }
+  });
+  tl.to(proxy, { t: 1, duration: 1, onUpdate: function(){
+    if (video.duration) {
+      var target = proxy.t * (video.duration - 0.05);
+      if (Math.abs(target - lastSeek) > 0.04) {
+        lastSeek = target;
+        try { video.currentTime = target; } catch(e){}
+      }
+    }
+    window.__scrollProgress = proxy.t;
+  } }, 0);
+  tl.fromTo('#videoWrap', { opacity: 0 }, { opacity: 1, duration: 0.12 }, 0.02);
+  tl.fromTo('#videoWrap', { scale: 0.94 }, { scale: 1, duration: 0.35 }, 0);
+  tl.to('#scrollCue', { autoAlpha: 0, duration: 0.07 }, 0.01);
+  tl.fromTo('#titleBlock', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.17 }, 0.78);
+
+  /* 4) line-by-line disclosure of the manifesto paragraph */
+  gsap.fromTo('.rl', { opacity: 0.14 }, {
+    opacity: 1, stagger: 0.15, ease: 'none',
+    scrollTrigger: { trigger: '#manifesto', start: 'top 80%', end: 'bottom 55%', scrub: true }
+  });
+})();
+</script>
 </body>
 </html>

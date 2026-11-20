@@ -1610,3 +1610,25 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-8px) rotate
     min-block-size: 48px;
   }
 }
+
+/* =========================================================
+   共通ヘッダーのCTA（2026-11-20 サイト再構成）
+   元は .page-lp 配下にだけあったピル型ボタンを、全ページの
+   ヘッダーで使えるよう同値で汎用化する。
+   ========================================================= */
+.site-header .main-nav a.lp-nav-cta {
+  background: var(--accent);
+  color: #FFFFFF;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  min-block-size: 40px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.site-header .main-nav a.lp-nav-cta:hover {
+  background: var(--accent-hover);
+  color: #FFFFFF;
+  text-decoration: none;
+}
