@@ -16,7 +16,7 @@
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--text);font-family:"Hiragino Kaku Gothic ProN","Noto Sans CJK JP",sans-serif;line-height:1.8;}
   a{color:inherit;text-decoration:none;}
-  .site-header{position:fixed;inset:0 0 auto 0;z-index:20;background:rgba(7,7,8,.72);backdrop-filter:blur(8px);border-bottom:1px solid rgba(77,141,255,.18);}
+  .site-header{position:fixed;inset:0 0 auto 0;z-index:20;background:rgba(7,7,8,.96);border-bottom:1px solid rgba(77,141,255,.18);}
   .header-inner{max-width:1120px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
   .logo{font-size:20px;letter-spacing:.28em;font-weight:700;}
   .logo span{color:var(--accent);}
@@ -94,7 +94,7 @@
   @media (max-width:959px){
     .nav-toggle{display:flex;}
     .main-nav{display:none;}
-    body.nav-open .main-nav{display:flex;position:fixed;inset:57px 0 auto 0;z-index:19;flex-direction:column;gap:0;background:rgba(7,7,8,.97);border-bottom:1px solid var(--line);padding:8px 24px 16px;font-size:16px;}
+    body.nav-open .main-nav{display:flex;position:fixed;inset:57px 0 auto 0;z-index:19;flex-direction:column;gap:0;background:#070708;border-bottom:1px solid var(--line);padding:8px 24px 16px;font-size:16px;}
     body.nav-open .main-nav a{padding:14px 0;border-bottom:1px solid rgba(77,141,255,.14);}
     body.nav-open .main-nav a:last-child{border-bottom:0;}
     .hero h1{font-size:34px;}
@@ -115,7 +115,14 @@
     <a class="logo" href="index.html">KAINORIA<span>.</span></a>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="main-nav" id="mainNav">
-      <a href="#real">リアルの世界</a><a href="#connect">接続</a><a href="#cross">交差点</a><a href="products.html">製品・サービス</a><a href="pricing.html">料金・FAQ</a><a href="diagnosis.html">無料業務診断</a>
+      <a href="index.html">ビジョン</a>
+      <a href="diagnosis.html">無料診断</a>
+      <a href="products.html">製品サービス</a>
+      <a href="pricing.html">料金FAQ</a>
+      <a href="columns.html">コラム</a>
+      <a href="tools.html">ツール</a>
+      <a href="legal.html">法務</a>
+      <a href="about.html">事業者情報</a>
     </nav>
   </div>
 </header>
@@ -263,8 +270,21 @@
   /* 1) GSAP ScrollTrigger hero choreography (same beats as the hand-rolled version) */
   var proxy = { t: 0 };
   var lastSeek = -1;
+  /* Release the video decoder once the hero is scrolled past: a decoded
+     full-screen video layer otherwise stays alive for the whole page. */
+  var videoLoaded = true;
+  function unloadVideo(){
+    if (!videoLoaded) return; videoLoaded = false;
+    try { video.pause(); video.removeAttribute('src'); video.load(); } catch(e){}
+  }
+  function reloadVideo(){
+    if (videoLoaded) return; videoLoaded = true;
+    video.src = video.getAttribute('data-src');
+    video.load(); lastSeek = -1;
+  }
   var tl = gsap.timeline({
-    scrollTrigger: { trigger: '#heroScroll', start: 'top top', end: 'bottom bottom', scrub: 0.4 },
+    scrollTrigger: { trigger: '#heroScroll', start: 'top top', end: 'bottom bottom', scrub: 0.4,
+      onLeave: unloadVideo, onEnterBack: reloadVideo },
     defaults: { ease: 'none' }
   });
   tl.to(proxy, { t: 1, duration: 1, onUpdate: function(){
