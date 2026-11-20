@@ -28,10 +28,10 @@
   body.nav-open .nav-toggle span:nth-child(2){opacity:0;}
   body.nav-open .nav-toggle span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
   /* HERO (scroll-driven) */
-  .hero-scroll{height:340vh;position:relative;}
+  .hero-scroll{height:250vh;position:relative;}
   .hero{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
-  .hero .video-wrap{position:absolute;inset:0;opacity:0;transform:scale(.94);}
-  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.35) brightness(.94);}
+  .hero .video-wrap{position:absolute;inset:0;opacity:0;transform:scale(.94);background:url('vision/poster.jpg') center/cover no-repeat;}
+  .hero canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .hero .hero-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;filter:saturate(.35) brightness(.94);}
   /* static mode (mobile / reduced motion / save-data): no scroll scrub, still image + title */
   body.static-hero .hero-scroll{height:100vh;}
@@ -130,7 +130,7 @@
 <div class="hero-scroll" id="heroScroll">
   <div class="hero">
     <div class="video-wrap" id="videoWrap">
-      <video id="heroVideo" data-src="vision/hero-web.mp4" poster="vision/poster.jpg" muted playsinline preload="auto"></video>
+      <canvas id="heroCanvas" width="1152" height="648"></canvas>
     </div>
     <img class="hero-still" src="vision/network.jpg" alt="">
     <div class="hero-inner">
@@ -234,7 +234,8 @@
 <script src="vision/lenis.min.js"></script>
 <script>
 (function(){
-  var video = document.getElementById('heroVideo');
+  var canvas = document.getElementById('heroCanvas');
+  var ctx = canvas.getContext('2d');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var smallScreen = window.matchMedia('(max-width: 767px)').matches;
   var saveData = !!(navigator.connection && navigator.connection.saveData);
@@ -247,7 +248,45 @@
     return;
   }
   window.__mode = 'full';
-  video.src = video.getAttribute('data-src');
+
+  /* Frame-sequence hero: the video is pre-rendered into 120 WebP frames
+     drawn onto a canvas. Seeking a <video> on scroll forces a decode per
+     seek and makes the scrub jank; pre-decoded images draw instantly.
+     Frames stream in progressively; until the target frame arrives the
+     nearest earlier loaded frame is held. */
+  var FRAME_COUNT = 120;
+  var frameImgs = [];
+  var frameReady = [];
+  var lastDrawn = -1;
+  function framePath(i){ return 'vision/frames/f' + ('00' + (i + 1)).slice(-3) + '.webp'; }
+  function currentFrame(){ return Math.round((window.__scrollProgress || 0) * (FRAME_COUNT - 1)); }
+  function drawFrame(idx){
+    var i = idx;
+    while (i > 0 && !frameReady[i]) i--;
+    if (!frameReady[i] || i === lastDrawn) return;
+    lastDrawn = i;
+    ctx.drawImage(frameImgs[i], 0, 0, canvas.width, canvas.height);
+  }
+  function loadFrame(idx){
+    var im = new Image();
+    frameImgs[idx] = im;
+    var mark = function(){
+      frameReady[idx] = true;
+      if (idx <= currentFrame()) drawFrame(currentFrame());
+    };
+    im.src = framePath(idx);
+    /* decode() pre-decodes off the main thread so the first drawImage of a
+       frame never stalls the scroll; onload alone can decode synchronously. */
+    if (im.decode) { im.decode().then(mark).catch(mark); } else { im.onload = mark; }
+  }
+  /* first frames immediately, the rest in small batches to keep load calm */
+  for (var fi = 0; fi < 24 && fi < FRAME_COUNT; fi++) loadFrame(fi);
+  (function loadRest(idx){
+    if (idx >= FRAME_COUNT) return;
+    loadFrame(idx);
+    if (idx % 12 === 11) { setTimeout(function(){ loadRest(idx + 1); }, 60); }
+    else { loadRest(idx + 1); }
+  })(24);
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -281,33 +320,13 @@
 
   /* 1) GSAP ScrollTrigger hero choreography (same beats as the hand-rolled version) */
   var proxy = { t: 0 };
-  var lastSeek = -1;
-  /* Release the video decoder once the hero is scrolled past: a decoded
-     full-screen video layer otherwise stays alive for the whole page. */
-  var videoLoaded = true;
-  function unloadVideo(){
-    if (!videoLoaded) return; videoLoaded = false;
-    try { video.pause(); video.removeAttribute('src'); video.load(); } catch(e){}
-  }
-  function reloadVideo(){
-    if (videoLoaded) return; videoLoaded = true;
-    video.src = video.getAttribute('data-src');
-    video.load(); lastSeek = -1;
-  }
   var tl = gsap.timeline({
-    scrollTrigger: { trigger: '#heroScroll', start: 'top top', end: 'bottom bottom', scrub: 0.4,
-      onLeave: unloadVideo, onEnterBack: reloadVideo },
+    scrollTrigger: { trigger: '#heroScroll', start: 'top top', end: 'bottom bottom', scrub: 0.2 },
     defaults: { ease: 'none' }
   });
   tl.to(proxy, { t: 1, duration: 1, onUpdate: function(){
-    if (video.duration) {
-      var target = proxy.t * (video.duration - 0.05);
-      if (Math.abs(target - lastSeek) > 0.04) {
-        lastSeek = target;
-        try { video.currentTime = target; } catch(e){}
-      }
-    }
     window.__scrollProgress = proxy.t;
+    drawFrame(Math.round(proxy.t * (FRAME_COUNT - 1)));
   } }, 0);
   tl.fromTo('#videoWrap', { opacity: 0 }, { opacity: 1, duration: 0.12 }, 0.02);
   tl.fromTo('#videoWrap', { scale: 0.94 }, { scale: 1, duration: 0.35 }, 0);
