@@ -251,9 +251,13 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* 2) Lenis smooth scroll (single scroll driver, wired into ScrollTrigger) */
+  /* 2) Lenis smooth scroll — fine pointers (desktop mouse) only.
+     On touch devices Lenis keeps a permanent rAF loop fighting the native
+     compositor scroll, which makes the whole page feel heavy; there the
+     browser's own scrolling drives ScrollTrigger instead. */
   var lenis = null;
-  if (typeof Lenis !== 'undefined') {
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (typeof Lenis !== 'undefined' && finePointer) {
     lenis = new Lenis({ duration: 1.15, smoothWheel: true });
     window.__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
@@ -263,6 +267,14 @@
       a.addEventListener('click', function(e){
         var id = a.getAttribute('href');
         if (id.length > 1 && document.querySelector(id)) { e.preventDefault(); lenis.scrollTo(id); }
+      });
+    });
+  } else {
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var id = a.getAttribute('href');
+        var el = id.length > 1 && document.querySelector(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
       });
     });
   }
