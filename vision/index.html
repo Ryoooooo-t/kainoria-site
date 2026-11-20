@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAINORIAの目指す世界 | KAINORIA</title>
+<meta name="description" content="AIエージェントとリアルの交差点を作る。KAINORIAが目指す世界と、そのために中小企業の現場をデジタルにつなぐ理由を紹介します。">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<style>
+  :root{
+    --bg:#070708; --bg2:#0E0E10; --panel:#131316; --line:#2B2B31;
+    --text:#F4F4F6; --muted:#A9A9B4; --accent:#4D8DFF; --accent2:#22C3E6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:"Hiragino Kaku Gothic ProN","Noto Sans CJK JP",sans-serif;line-height:1.8;}
+  a{color:inherit;text-decoration:none;}
+  .site-header{position:fixed;inset:0 0 auto 0;z-index:20;background:rgba(7,7,8,.72);backdrop-filter:blur(8px);border-bottom:1px solid rgba(77,141,255,.18);}
+  .header-inner{max-width:1120px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+  .logo{font-size:20px;letter-spacing:.28em;font-weight:700;}
+  .logo span{color:var(--accent);}
+  .main-nav{display:flex;gap:24px;font-size:13px;color:var(--muted);flex-wrap:wrap;}
+  .main-nav a:hover{color:#fff;}
+  .nav-toggle{display:none;background:none;border:0;padding:10px;cursor:pointer;flex-direction:column;gap:6px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--text);transition:transform .25s,opacity .25s;}
+  body.nav-open .nav-toggle span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  body.nav-open .nav-toggle span:nth-child(2){opacity:0;}
+  body.nav-open .nav-toggle span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+  /* HERO (scroll-driven) */
+  .hero-scroll{height:340vh;position:relative;}
+  .hero{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+  .hero .video-wrap{position:absolute;inset:0;opacity:0;transform:scale(.94);}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.35) brightness(.94);}
+  .hero .hero-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;filter:saturate(.35) brightness(.94);}
+  /* static mode (mobile / reduced motion / save-data): no scroll scrub, still image + title */
+  body.static-hero .hero-scroll{height:100vh;}
+  body.static-hero .video-wrap{display:none;}
+  body.static-hero .hero-still{display:block;}
+  body.static-hero .title-block{opacity:1;transform:none;}
+  body.static-hero .scroll-cue{display:none;}
+  .hero .title-block{opacity:0;transform:translateY(24px);}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(7,7,8,.18) 0%,rgba(7,7,8,.55) 62%,rgba(7,7,8,.92) 100%),linear-gradient(180deg,rgba(7,7,8,.45) 0%,rgba(7,7,8,0) 30%,rgba(7,7,8,0) 62%,var(--bg) 100%);}
+  .hero-inner{position:relative;z-index:2;padding:120px 24px 96px;max-width:880px;}
+  .hero .kicker{font-size:13px;letter-spacing:.42em;color:var(--accent2);margin-bottom:24px;}
+  .hero h1{font-size:52px;line-height:1.35;letter-spacing:.04em;font-weight:700;text-shadow:0 4px 32px rgba(0,0,0,.65);}
+  .hero .tagline{margin-top:32px;font-size:21px;color:#DEDEE6;letter-spacing:.06em;}
+  .hero .tagline b{color:#fff;border-bottom:2px solid var(--accent);padding-bottom:2px;}
+  .scroll-cue{margin-top:64px;font-size:11px;letter-spacing:.4em;color:var(--muted);}
+  .scroll-cue::after{content:"";display:block;width:1px;height:48px;margin:12px auto 0;background:linear-gradient(180deg,var(--accent),transparent);}
+  /* SECTIONS */
+  section{padding:112px 24px;}
+  .wrap{max-width:1120px;margin:0 auto;}
+  .sec-label{font-size:12px;letter-spacing:.4em;color:var(--accent2);margin-bottom:16px;}
+  h2{font-size:34px;line-height:1.5;letter-spacing:.03em;margin-bottom:24px;}
+  .lead{color:var(--muted);max-width:720px;font-size:16px;}
+  .lead-strong{color:var(--text);max-width:760px;font-size:18px;margin-bottom:24px;}
+  .alt{background:var(--bg2);}
+  /* scattered chips */
+  .scatter{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px;max-width:880px;}
+  .chip{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:16px 24px;font-size:14px;color:var(--muted);}
+  .chip:nth-child(2){transform:translateY(16px) rotate(-1.2deg);}
+  .chip:nth-child(3){transform:translateY(-8px) rotate(1deg);}
+  .chip:nth-child(4){transform:translateY(10px) rotate(.6deg);}
+  .chip:nth-child(5){transform:translateY(-4px) rotate(-.8deg);}
+  /* connect */
+  .connect-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;margin-top:48px;align-items:stretch;}
+  .big-card{border:1px solid var(--line);background:linear-gradient(160deg,#15151A,#0B0B0D);border-radius:16px;padding:40px;}
+  .big-card h3{font-size:22px;margin-bottom:16px;}
+  .big-card p{color:var(--muted);font-size:15px;}
+  .mini-card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:24px;}
+  .mini-card .tag{display:inline-block;font-size:11px;letter-spacing:.2em;color:var(--accent2);border:1px solid var(--line);border-radius:999px;padding:4px 12px;margin-bottom:16px;}
+  .mini-card img{width:100%;border-radius:8px;display:block;margin-bottom:16px;}
+  .mini-card h4{font-size:16px;margin-bottom:8px;}
+  .mini-card p{color:var(--muted);font-size:13px;}
+  /* intersection */
+  .cross{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:48px;}
+  .cross img{width:100%;display:block;}
+  .cross .cap{position:absolute;left:0;right:0;bottom:0;padding:32px;background:linear-gradient(180deg,transparent,rgba(7,7,8,.92));}
+  .cross .cap p{color:#E4E4EA;font-size:15px;max-width:720px;}
+  /* facts */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
+  .fact{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:24px;text-align:left;}
+  .fact .v{font-size:28px;font-weight:700;color:#fff;}
+  .fact .k{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.6;}
+  /* CTA */
+  .cta-box{border:1px solid var(--accent);background:linear-gradient(160deg,#15151A,#0B0B0D);border-radius:16px;padding:56px 40px;text-align:center;}
+  .cta-box h2{margin-bottom:16px;}
+  .cta-box p{color:var(--muted);margin-bottom:32px;}
+  .btn{display:inline-block;background:#2563EB;color:#fff;font-weight:700;padding:16px 40px;border-radius:8px;font-size:15px;}
+  .btn-sub{display:inline-block;border:1px solid var(--line);color:var(--text);padding:16px 32px;border-radius:8px;font-size:15px;margin-left:16px;}
+  footer{border-top:1px solid rgba(77,141,255,.18);padding:40px 24px;color:var(--muted);font-size:13px;}
+  .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  @media (max-width:959px){
+    .nav-toggle{display:flex;}
+    .main-nav{display:none;}
+    body.nav-open .main-nav{display:flex;position:fixed;inset:57px 0 auto 0;z-index:19;flex-direction:column;gap:0;background:rgba(7,7,8,.97);border-bottom:1px solid var(--line);padding:8px 24px 16px;font-size:16px;}
+    body.nav-open .main-nav a{padding:14px 0;border-bottom:1px solid rgba(77,141,255,.14);}
+    body.nav-open .main-nav a:last-child{border-bottom:0;}
+    .hero h1{font-size:34px;}
+    .hero .tagline{font-size:17px;}
+    h2{font-size:26px;}
+    section{padding:72px 20px;}
+    .connect-grid{grid-template-columns:1fr;}
+    .facts{grid-template-columns:repeat(2,1fr);}
+    .btn-sub{margin-left:0;margin-top:16px;}
+    .chip{transform:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">KAINORIA<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav">
+      <a href="../index.html">トップ</a><a href="#real">リアルの世界</a><a href="#connect">接続</a><a href="#cross">交差点</a><a href="../diagnosis.html">無料業務診断</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero-scroll" id="heroScroll">
+  <div class="hero">
+    <div class="video-wrap" id="videoWrap">
+      <video id="heroVideo" data-src="hero-web.mp4" poster="poster.jpg" muted playsinline preload="auto"></video>
+    </div>
+    <img class="hero-still" src="network.jpg" alt="">
+    <div class="hero-inner">
+      <div class="title-block" id="titleBlock">
+        <div class="kicker">VISION</div>
+        <h1>KAINORIAの<br>目指す世界</h1>
+        <p class="tagline"><b>AIエージェントとリアルの交差点</b>を作る。</p>
+      </div>
+      <div class="scroll-cue" id="scrollCue">SCROLL</div>
+    </div>
+  </div>
+</div>
+
+<section id="real">
+  <div class="wrap">
+    <div class="sec-label">THE REAL WORLD</div>
+    <h2>リアルの業務は、AIからは見えない。</h2>
+    <p class="lead-strong" id="manifesto"><span class="rl">これから数年で、商品の売買の主役は人からAIエージェントへ移っていきます。</span><span class="rl">AIが発注先を探し、条件を比べ、取引を決める時代に、生き残れるのはAIに見つけてもらえる会社です。</span><span class="rl">ただし、AIが取引できるのはデジタル上に情報があるものだけです。</span></p>
+    <p class="lead">中小企業の現場では、いま何がどれだけあって、何ができて、いつ届けられるかが、紙とExcelと、担当者の記憶の中にあります。その情報は会社の外に出ることがなく、AIエージェントが探しに来ても、見つけることができません。実在する会社の「できること」が、デジタルの世界からは存在しないことになっている。それが、いまの姿です。</p>
+    <div class="scatter">
+      <div class="chip">紙の注文書とFAX</div>
+      <div class="chip">Excelの在庫表（最新版がどれか分からない）</div>
+      <div class="chip">担当者の記憶頼みの納期回答</div>
+      <div class="chip">電話でしか確認できない在庫</div>
+      <div class="chip">モールごとに手で合わせる数字</div>
+    </div>
+  </div>
+</section>
+
+<section id="connect" class="alt">
+  <div class="wrap">
+    <div class="sec-label">CONNECTION</div>
+    <h2>一社ずつ、リアルの業務をデジタルにつなぐ。</h2>
+    <p class="lead">KAINORIAは、既製品を当てはめるのではなく、その会社の手順に合わせた専用アプリを作ります。開発にAIを活用して作るコストを抑え、小規模な現場でも導入できる形で、リアルの業務をデジタル側へ接続していきます。</p>
+    <div class="connect-grid">
+      <div class="big-card">
+        <h3>専用アプリの受託開発</h3>
+        <p>在庫管理・受発注・工程管理・記録の仕組みなど、既製品では合わない業務を、その会社の運用に合わせて設計・開発します。共通基盤の上に各社専用の仕組みを組み合わせることで、オーダーメイドでありながら導入しやすい価格を実現します。業務がアプリで回り始めたとき、その会社の「いま何がどれだけあり、何ができるか」が、初めてデジタルの側から読める情報になります。</p>
+      </div>
+      <div class="mini-card">
+        <span class="tag">実装例のひとつ</span>
+        <img src="ss-dashboard.webp" alt="SmartStock SMEの概要ダッシュボード画面">
+        <h4>在庫管理アプリ「SmartStock SME」</h4>
+        <p>部品・材料の在庫を工番と結びつけて管理するアプリ。接続の取り組みから生まれた、最初の実装例です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cross">
+  <div class="wrap">
+    <div class="sec-label">THE INTERSECTION</div>
+    <h2>AIエージェントとリアルの交差点。</h2>
+    <p class="lead">会社が一社ずつつながると、その先に新しい場所が生まれます。発注先を探すAIエージェントが、実在の企業の「いま何がどれだけあり、いつ出せるか」に出会える場所。KAINORIAが作るのは、AIエージェントとリアルの交差点です。</p>
+    <div class="cross">
+      <img src="network.jpg" alt="地球上に広がるネットワークのイメージ">
+      <div class="cap"><p>つながった会社の情報は、本来その会社最大の営業材料です。営業に行かなくても、探している側から見つけてもらえる。交差点は、参加する会社が増えるほど、すべての会社にとって価値のある場所になります。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>まずは、御社の業務を診断します。</h2>
+      <p>業務診断メモ1枚と、貴社向けの画面イメージ1枚を、3営業日以内に無料でお送りします。</p>
+      <a class="btn" href="../diagnosis.html">無料業務診断に申し込む（約3分）</a><a class="btn-sub" href="../index.html">トップへ戻る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>KAINORIA.</div>
+    <div>© 2026 KAINORIA</div>
+  </div>
+</footer>
+
+<script>
+/* hamburger menu (works in both full and static modes) */
+(function(){
+  var toggle = document.getElementById('navToggle');
+  if (!toggle) return;
+  function close(){ document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded', 'false'); }
+  toggle.addEventListener('click', function(){
+    var open = document.body.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('#mainNav a').forEach(function(a){ a.addEventListener('click', close); });
+})();
+</script>
+<script src="gsap.min.js"></script>
+<script src="ScrollTrigger.min.js"></script>
+<script src="lenis.min.js"></script>
+<script>
+(function(){
+  var video = document.getElementById('heroVideo');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var smallScreen = window.matchMedia('(max-width: 767px)').matches;
+  var saveData = !!(navigator.connection && navigator.connection.saveData);
+  var hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+
+  /* 3) static fallback: mobile, reduced motion, or save-data -> still image + title, no video download */
+  if (reduced || smallScreen || saveData || !hasGsap) {
+    document.body.classList.add('static-hero');
+    window.__mode = 'static';
+    return;
+  }
+  window.__mode = 'full';
+  video.src = video.getAttribute('data-src');
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* 2) Lenis smooth scroll (single scroll driver, wired into ScrollTrigger) */
+  var lenis = null;
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    window.__lenis = lenis;
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var id = a.getAttribute('href');
+        if (id.length > 1 && document.querySelector(id)) { e.preventDefault(); lenis.scrollTo(id); }
+      });
+    });
+  }
+
+  /* 1) GSAP ScrollTrigger hero choreography (same beats as the hand-rolled version) */
+  var proxy = { t: 0 };
+  var lastSeek = -1;
+  var tl = gsap.timeline({
+    scrollTrigger: { trigger: '#heroScroll', start: 'top top', end: 'bottom bottom', scrub: 0.4 },
+    defaults: { ease: 'none' }
+  });
+  tl.to(proxy, { t: 1, duration: 1, onUpdate: function(){
+    if (video.duration) {
+      var target = proxy.t * (video.duration - 0.05);
+      if (Math.abs(target - lastSeek) > 0.04) {
+        lastSeek = target;
+        try { video.currentTime = target; } catch(e){}
+      }
+    }
+    window.__scrollProgress = proxy.t;
+  } }, 0);
+  tl.fromTo('#videoWrap', { opacity: 0 }, { opacity: 1, duration: 0.12 }, 0.02);
+  tl.fromTo('#videoWrap', { scale: 0.94 }, { scale: 1, duration: 0.35 }, 0);
+  tl.to('#scrollCue', { autoAlpha: 0, duration: 0.07 }, 0.01);
+  tl.fromTo('#titleBlock', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.17 }, 0.78);
+
+  /* 4) line-by-line disclosure of the manifesto paragraph */
+  gsap.fromTo('.rl', { opacity: 0.14 }, {
+    opacity: 1, stagger: 0.15, ease: 'none',
+    scrollTrigger: { trigger: '#manifesto', start: 'top 80%', end: 'bottom 55%', scrub: true }
+  });
+})();
+</script>
+</body>
+</html>
